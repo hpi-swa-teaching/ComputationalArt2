@@ -335,7 +335,7 @@ CAWindow >> canvasContainer: aCanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:59'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:28'
 }
 CAWindow >> initialize [
 	super initialize.
@@ -343,8 +343,8 @@ CAWindow >> initialize [
 	toolFill := false.
 	toolStroke := true.
 	toolStrokeWidth := 1.
-	primaryColor := CARGB newFrom: Color black.
-	secondaryColor := CARGB newFrom: Color white.
+	primaryColor := CARGB black.
+	secondaryColor := CARGB white.
 ]
 
 {

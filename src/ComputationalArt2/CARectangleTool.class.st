@@ -38,25 +38,7 @@ CARectangleTool class >> toolName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Halfil 6/12/2024 21:58'
-}
-CARectangleTool >> drawOutlineOfRect: rect on: aCACanvasContainer withColor: color [
-    | topEdge bottomEdge leftEdge rightEdge borderWidth |
-    borderWidth := 1. 
-    topEdge := Rectangle origin: rect topLeft extent: rect width @ borderWidth.
-    bottomEdge := Rectangle origin: rect bottomLeft - (0 @ borderWidth) extent: rect width @ borderWidth.
-    leftEdge := Rectangle origin: rect topLeft extent: borderWidth @ rect height.
-    rightEdge := Rectangle origin: rect topRight - (borderWidth @ 0) extent: borderWidth @ rect height.
-
-    aCACanvasContainer canvas drawRect: topEdge color: color.
-    aCACanvasContainer canvas drawRect: bottomEdge color: color.
-    aCACanvasContainer canvas drawRect: leftEdge color: color.
-    aCACanvasContainer canvas drawRect: rightEdge color: color.
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 20:26'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:58'
 }
 CARectangleTool >> drawRectangleFrom: startPoint to: endPoint on: aCACanvasContainer [
 	| topLeft bottomRight width height rect caWindow |
@@ -68,10 +50,10 @@ CARectangleTool >> drawRectangleFrom: startPoint to: endPoint on: aCACanvasConta
 	rect := Rectangle origin: topLeft extent: width @ height.
 
 	caWindow toolFill ifTrue: [
-		aCACanvasContainer canvas drawRect: rect color: caWindow secondaryColor morphicColor.].
+		aCACanvasContainer canvas drawRect: rect color: caWindow secondaryColor.].
 
 	caWindow toolStroke ifTrue: [
-		self drawOutlineOfRect: rect on: aCACanvasContainer withColor: caWindow primaryColor morphicColor.].
+		aCACanvasContainer canvas drawOutlineOfRect: rect withColor: caWindow primaryColor.].
 ]
 
 {

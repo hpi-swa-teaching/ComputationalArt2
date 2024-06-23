@@ -29,10 +29,10 @@ CAResetCanvasTool class >> toolName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 20:31'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:59'
 }
 CAResetCanvasTool >> handleMouseDown: anEvent on: aCACanvasContainer [
-	aCACanvasContainer canvas clearColor: aCACanvasContainer caWindow primaryColor morphicColor.
+	aCACanvasContainer canvas clearColor: aCACanvasContainer caWindow primaryColor.
 	aCACanvasContainer canvas commit.
 	aCACanvasContainer updateForm.
 ]

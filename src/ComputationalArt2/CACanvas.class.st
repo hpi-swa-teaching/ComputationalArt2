@@ -52,49 +52,17 @@ CACanvas >> clearImage: aForm [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:17'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:01'
 }
 CACanvas >> colorAt: aPosition [
-
-	^ self form colorAt: aPosition.
+	^ CARGB newFrom: (self form colorAt: aPosition).
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 12:52'
-}
-CACanvas >> colorsFrom: aStartPosition to: anEndPosition [
-
-	| colorsMatrix endX endY startX startY |
-	startX := aStartPosition x.
-	startY := aStartPosition y.
-	endX := anEndPosition x.
-	endY := anEndPosition y.
-
-	colorsMatrix := Array new: endX - startX + 1.
-    
-	 (startX to: endX) do: [ :x |
-		| column |
-		column := Array new: endY - startY + 1.
-	        
-		(startY to: endY) do: [ :y |
-	            | color |
-	            color := self colorAt: x@y.
-	            column at: (y - startY + 1) put: color.
-	        ].
-	        
-	        colorsMatrix at: (x - startX + 1) put: column.
-		].
-	
-	^ colorsMatrix.
-]
-
-{
-	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:31'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:05'
 }
 CACanvas >> commit [
-	
 	stableCanvas setForm: stagedCanvas form deepCopy.
 ]
 
@@ -131,9 +99,9 @@ CACanvas >> depth: aDepth [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/12/2024 18:35'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
 }
-CACanvas >> drawCircleOutlineAt: center radius: radius color: aColor [
+CACanvas >> drawCircleOutlineAt: center radius: radius color: aCARGB [
 	| angle stepAngle prevPoint x y |
 	stepAngle := (2 * Float pi) / 100.
 	prevPoint := center + (radius @ 0).
@@ -142,61 +110,78 @@ CACanvas >> drawCircleOutlineAt: center radius: radius color: aColor [
 		angle := i * stepAngle.
 		x := center x + (radius * (angle cos)).
 		y := center y + (radius * (angle sin)).
-		self drawLine: prevPoint to: (x @ y) width: 1 color: aColor.
+		self drawLine: prevPoint to: (x @ y) width: 1 color: aCARGB.
 		prevPoint := (x @ y).
 		].
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 21:19'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
 }
-CACanvas >> drawLine: aStartPoint to: anEndPoint width: aLineWidth color: aColor [
+CACanvas >> drawLine: aStartPoint to: anEndPoint width: aLineWidth color: aCARGB [
 
 	stagedCanvas line: aStartPoint to: anEndPoint
-		width: aLineWidth color: aColor.
+		width: aLineWidth color: aCARGB.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+}
+CACanvas >> drawOutlineOfRect: rect withColor: aCARGB [
+    | topEdge bottomEdge leftEdge rightEdge borderWidth |
+    borderWidth := 1. 
+    topEdge := Rectangle origin: rect topLeft extent: rect width @ borderWidth.
+    bottomEdge := Rectangle origin: rect bottomLeft - (0 @ borderWidth) extent: rect width @ borderWidth.
+    leftEdge := Rectangle origin: rect topLeft extent: borderWidth @ rect height.
+    rightEdge := Rectangle origin: rect topRight - (borderWidth @ 0) extent: borderWidth @ rect height.
+
+    self drawRect: topEdge color: aCARGB.
+    self drawRect: bottomEdge color: aCARGB.
+    self drawRect: leftEdge color: aCARGB.
+    self drawRect: rightEdge color: aCARGB.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:39'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
 }
-CACanvas >> drawPoint: aPoint color: aColor [
-
-	stagedCanvas point: aPoint color: aColor.
+CACanvas >> drawPoint: aPoint color: aCARGB [
+	stagedCanvas point: aPoint color: aCARGB.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:36'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
 }
-CACanvas >> drawRect: aRectangle color: aColor [
+CACanvas >> drawRect: aRectangle color: aCARGB [
 
-	stagedCanvas fillRectangle: aRectangle color: aColor.
+	stagedCanvas fillRectangle: aRectangle color: aCARGB.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:36'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
 }
-CACanvas >> drawRect: aStartPoint to: anEndPoint color: aColor [
+CACanvas >> drawRect: aStartPoint to: anEndPoint color: aCARGB [
 
 	stagedCanvas fillRectangle:
-		(Rectangle origin: aStartPoint corner: anEndPoint) color: aColor.
+		(Rectangle origin: aStartPoint corner: anEndPoint) color: aCARGB.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/12/2024 18:33'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:07'
 }
-CACanvas >> fillCircleAt: center radius: radius color: aColor [
+CACanvas >> fillCircleAt: center radius: radius color: aCARGB [
 	| dx dy |
 	(center x - radius to: center x + radius) do: [:x |
 		(center y - radius to: center y + radius) do: [:y |
 			dx := x - center x.
 			dy := y - center y.
 			((dx * dx) + (dy * dy) <= (radius * radius)) ifTrue: [
-				self drawPoint: (x @ y) color: aColor.
+				self drawPoint: (x @ y) color: aCARGB.
 				].
 			].
 		].
@@ -204,22 +189,20 @@ CACanvas >> fillCircleAt: center radius: radius color: aColor [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/11/2024 16:49'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:01'
 }
-CACanvas >> fillFrom: startPoint withColor: aColor [
+CACanvas >> fillFrom: startPoint withColor: aCARGB [
 
 	| stack oldColor |
-	oldColor := self colorAt: startPoint.
-	(oldColor = aColor) ifTrue: [ ^self ].
-	
+	oldColor  := self colorAt: startPoint.
+	oldColor = aCARGB ifTrue: [ ^self ].
 	stack := OrderedCollection new.
 	stack add: startPoint.
-	
 	[ stack isEmpty ] whileFalse: [
 		| point neighbors |
 		point := stack removeLast.
 		(self colorAt: point) = oldColor ifTrue: [
-			self drawPoint: point color: aColor.
+			self drawPoint: point color: aCARGB.
 			neighbors := { point + (1@0). point - (1@0). point + (0@1). point - (0@1) }.
 			neighbors do: [ :neighbor |
 				(self isInBounds: neighbor) ifTrue: [ stack add: neighbor ].

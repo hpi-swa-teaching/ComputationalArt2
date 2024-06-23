@@ -10,6 +10,18 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:23'
+}
+CAResetFeature class >> executeFeature: aCAWindow [
+	|  canvasContainer |
+	canvasContainer := aCAWindow canvasContainer.
+	canvasContainer canvas reset.
+	canvasContainer updateForm.
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 23:33'
 }
 CAResetFeature class >> featureName [

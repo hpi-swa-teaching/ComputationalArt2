@@ -134,7 +134,7 @@ CACanvasContainer >> handlesMouseWheel: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 19:12'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:40'
 }
 CACanvasContainer >> initialize [
 	super initialize.
@@ -148,14 +148,6 @@ CACanvasContainer >> initialize [
 	
 	caCanvas := CACanvas new: 100 height: 100 depth: 32.
 	caCanvas create.
-	
-	caCanvas clearColor: Color green.
-	
-	0 to: 99 do: [ :y |
-		0 to: 99 do: [ :x |
-			caCanvas drawPoint: x@y color: Color random.
-			].
-		].
 	
 	imageMorph := ImageMorph new image: caCanvas form.
 	imageMorph position: canvasOffset.

@@ -32,10 +32,10 @@ CAPenTool class >> toolName [
 
 {
 	#category : #'event handling',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 20:16'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:50'
 }
 CAPenTool >> drawAt: aPoint on: aCACanvasContainer [
-	aCACanvasContainer canvas drawPoint: aPoint color: aCACanvasContainer caWindow primaryColor morphicColor.
+	aCACanvasContainer canvas drawPoint: aPoint color: aCACanvasContainer caWindow primaryColor.
 
 ]
 
@@ -63,10 +63,11 @@ CAPenTool >> handleMouseMove: anEvent on: aCACanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/12/2024 17:41'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:06'
 }
 CAPenTool >> handleMouseUp: anEvent on: aCACanvasContainer [
 	isDrawing := false.
+	aCACanvasContainer canvas commit.
 ]
 
 {

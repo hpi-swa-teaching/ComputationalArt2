@@ -49,7 +49,7 @@ CAColorPickerWindow >> colorSelected: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 21:21'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:50'
 }
 CAColorPickerWindow >> initialize [
 	| vBox hBox hBoxRed hBoxGreen hBoxBlue hBoxHue hBoxSaturation hBoxValue cancelButton hBoxButtons acceptButton |
@@ -76,12 +76,15 @@ CAColorPickerWindow >> initialize [
 	
 	hueTextMorph := CAIntegerTextMorph new minValue: 0; maxValue: 255.
 	hueTextMorph hResizing: #spaceFill.
+	hueTextMorph actionBlock: [:num | hsv selectedColor: (Color h: (num / 255.0 * 360) s: hsv selectedColor saturation v: hsv selectedColor brightness).].
 	
 	saturationTextMorph := CAIntegerTextMorph new minValue: 0; maxValue: 255.
 	saturationTextMorph hResizing: #spaceFill.
+	saturationTextMorph actionBlock: [:num | hsv selectedColor: (Color h: hsv selectedColor hue s: (num / 255.0) v: hsv selectedColor brightness).].
 	
 	valueTextMorph := CAIntegerTextMorph new minValue: 0; maxValue: 255.
 	valueTextMorph hResizing: #spaceFill.
+	valueTextMorph actionBlock: [:num | hsv selectedColor: (Color h: hsv selectedColor hue s: hsv selectedColor saturation v: (num / 255.0)).].
 	
 	hBoxRed := CAWindow createHBox.
 	hBoxRed addMorph: redTextMorph;
@@ -169,11 +172,11 @@ CAColorPickerWindow >> paneColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:30'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:43'
 }
-CAColorPickerWindow >> startColor: aCAColor [
+CAColorPickerWindow >> startColor: aCARGB [
 	| morpicColor |
-	morpicColor := aCAColor morphicColor.
+	morpicColor := aCARGB morphicColor.
 	self colorSelected: morpicColor.
-	hsv selectColor: morpicColor.
+	hsv selectedColor: morpicColor.
 ]

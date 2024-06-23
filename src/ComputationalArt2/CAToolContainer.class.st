@@ -12,7 +12,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 21:13'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:41'
 }
 CAToolContainer class >> create: aCAWindow [
 	
@@ -40,6 +40,7 @@ CAToolContainer class >> create: aCAWindow [
 	secondaryForm fillColor: aCAWindow secondaryColor morphicColor.
 	secondaryColorButton := CAIconButton newFrom: secondaryForm onClick: [ | colorPicker |
 		colorPicker := CAColorPickerWindow create.
+		colorPicker startColor: aCAWindow secondaryColor.
 		colorPicker onAccept: [:aCARGB |
 			aCAWindow secondaryColor: aCARGB.
 			secondaryForm fillColor: aCARGB morphicColor.
@@ -50,6 +51,7 @@ CAToolContainer class >> create: aCAWindow [
 	primaryForm fillColor: aCAWindow primaryColor morphicColor.
 	primaryColorButton := CAIconButton newFrom: primaryForm onClick: [ | colorPicker |
 		colorPicker := CAColorPickerWindow create.
+		colorPicker startColor: aCAWindow primaryColor.
 		colorPicker onAccept: [:aCARGB |
 			aCAWindow primaryColor: aCARGB.
 			primaryForm fillColor: aCARGB morphicColor.
