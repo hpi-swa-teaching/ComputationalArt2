@@ -7,7 +7,8 @@ Class {
 		'canvasOffset',
 		'caWindow',
 		'canvasScale',
-		'form'
+		'form',
+		'previousTool'
 	],
 	#category : #ComputationalArt2
 }
@@ -164,10 +165,14 @@ CACanvasContainer >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 01:21'
+	#'squeak_changestamp' : 'HAlfil 6/23/2024 17:25'
 }
 CACanvasContainer >> mouseDown: anEvent [
-	caWindow activeTool handleMouseDown: anEvent on: self.
+    anEvent hand lastEvent shiftPressed ifTrue: [
+        self setTemporaryTool: CAMoveTool new.
+    ] ifFalse: [
+        caWindow activeTool handleMouseDown: anEvent on: self.
+    ].
 ]
 
 {
@@ -180,10 +185,14 @@ CACanvasContainer >> mouseMove: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 13:32'
+	#'squeak_changestamp' : 'HAlfil 6/23/2024 17:23'
 }
 CACanvasContainer >> mouseUp: anEvent [
-	caWindow activeTool handleMouseUp: anEvent on: self.	
+  anEvent hand lastEvent shiftPressed ifTrue: [
+        self revertToPreviousTool.
+    ] ifFalse: [
+        caWindow activeTool handleMouseUp: anEvent on: self.
+    ].
 ]
 
 {
@@ -192,6 +201,23 @@ CACanvasContainer >> mouseUp: anEvent [
 }
 CACanvasContainer >> mouseWheel: anEvent [
 	caWindow activeTool handleMouseWheel: anEvent on: self.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'HAlfil 6/23/2024 17:23'
+}
+CACanvasContainer >> revertToPreviousTool [
+    caWindow setActiveTool: previousTool.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'HAlfil 6/23/2024 17:24'
+}
+CACanvasContainer >> setTemporaryTool: aTool [
+    previousTool := self caWindow activeTool.
+    self caWindow setActiveTool: aTool.
 ]
 
 {

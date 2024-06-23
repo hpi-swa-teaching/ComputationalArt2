@@ -405,6 +405,14 @@ CAWindow >> secondaryColor: aCARGB [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'HAlfil 6/23/2024 17:21'
+}
+CAWindow >> setActiveTool: aTool [
+    activeTool := aTool.
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/7/2024 01:12'
 }
 CAWindow >> toolFill [
