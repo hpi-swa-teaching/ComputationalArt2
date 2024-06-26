@@ -117,10 +117,10 @@ CACanvasAPI >> rgbAt: aPoint put: aCARGB [
 
 {
 	#category : #API,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:15'
+	#'squeak_changestamp' : 'iss 6/26/2024 12:56'
 }
 CACanvasAPI >> strokeCircle: aPoint radius: aNumber [
-	canvas drawCircleOutlineAt: aPoint radius: aNumber color: strokeRGB.
+	canvas drawCircleOutlineAt: aPoint radius: aNumber color: strokeRGB width: strokeWidth.
 ]
 
 {
@@ -157,18 +157,18 @@ CACanvasAPI >> strokeRGB: aCARGB [
 
 {
 	#category : #API,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:36'
+	#'squeak_changestamp' : 'iss 6/26/2024 12:57'
 }
 CACanvasAPI >> strokeRect: start extent: size [
-	canvas drawOutlineOfRect: (start extent: size) withColor: strokeRGB.
+	canvas drawOutlineOfRect: (start extent: size) withColor: strokeRGB width: strokeWidth.
 ]
 
 {
 	#category : #API,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:38'
+	#'squeak_changestamp' : 'iss 6/26/2024 12:57'
 }
 CACanvasAPI >> strokeRect: start to: end [
-	canvas drawOutlineOfRect: (start corner: end) withColor: strokeRGB.
+	canvas drawOutlineOfRect: (start corner: end) withColor: strokeRGB width: strokeWidth.
 ]
 
 {

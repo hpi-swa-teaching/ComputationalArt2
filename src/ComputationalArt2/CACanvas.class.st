@@ -99,19 +99,24 @@ CACanvas >> depth: aDepth [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+	#'squeak_changestamp' : 'iss 6/26/2024 12:52'
 }
-CACanvas >> drawCircleOutlineAt: center radius: radius color: aCARGB [
-	| angle stepAngle prevPoint x y |
-	stepAngle := (2 * Float pi) / 100.
-	prevPoint := center + (radius @ 0).
+CACanvas >> drawCircleOutlineAt: center radius: radius color: aCARGB width: aLineWidth [
+
+	| angle stepAngle x y points |
 	
-	1 to: 100 do: [:i |
+	points := OrderedCollection new.
+	stepAngle := (2 * Float pi) / 100.
+	
+	0 to: 99 do: [:i | 
 		angle := i * stepAngle.
-		x := center x + (radius * (angle cos)).
-		y := center y + (radius * (angle sin)).
-		self drawLine: prevPoint to: (x @ y) width: 1 color: aCARGB.
-		prevPoint := (x @ y).
+		x := (center x + (radius * (angle cos))) rounded.
+		y := (center y + (radius * (angle sin))) rounded.
+		points add: (x @ y).
+		].
+	
+	points withIndexDo: [:point :i |
+		self drawLine: point to: (points atWrap: i + 1) width: aLineWidth color: aCARGB.
 		].
 ]
 
@@ -127,20 +132,21 @@ CACanvas >> drawLine: aStartPoint to: anEndPoint width: aLineWidth color: aCARGB
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+	#'squeak_changestamp' : 'iss 6/26/2024 12:55'
 }
-CACanvas >> drawOutlineOfRect: rect withColor: aCARGB [
-    | topEdge bottomEdge leftEdge rightEdge borderWidth |
-    borderWidth := 1. 
-    topEdge := Rectangle origin: rect topLeft extent: rect width @ borderWidth.
-    bottomEdge := Rectangle origin: rect bottomLeft - (0 @ borderWidth) extent: rect width @ borderWidth.
-    leftEdge := Rectangle origin: rect topLeft extent: borderWidth @ rect height.
-    rightEdge := Rectangle origin: rect topRight - (borderWidth @ 0) extent: borderWidth @ rect height.
+CACanvas >> drawOutlineOfRect: rect withColor: aCARGB width: aLineWidth [
 
-    self drawRect: topEdge color: aCARGB.
-    self drawRect: bottomEdge color: aCARGB.
-    self drawRect: leftEdge color: aCARGB.
-    self drawRect: rightEdge color: aCARGB.
+	| topEdge bottomEdge leftEdge rightEdge |
+	
+	topEdge := Rectangle origin: rect topLeft extent: rect width @ aLineWidth.
+	bottomEdge := Rectangle origin: rect bottomLeft - (0 @ aLineWidth) extent: rect width @ aLineWidth.
+	leftEdge := Rectangle origin: rect topLeft extent: aLineWidth @ rect height.
+	rightEdge := Rectangle origin: rect topRight - (aLineWidth @ 0) extent: aLineWidth @ rect height.
+	
+	self drawRect: topEdge color: aCARGB.
+	self drawRect: bottomEdge color: aCARGB.
+	self drawRect: leftEdge color: aCARGB.
+	self drawRect: rightEdge color: aCARGB.
 ]
 
 {

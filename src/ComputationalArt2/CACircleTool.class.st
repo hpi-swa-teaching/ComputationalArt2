@@ -38,7 +38,7 @@ CACircleTool class >> toolName [
 
 {
 	#category : #drawing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:52'
+	#'squeak_changestamp' : 'iss 6/26/2024 13:37'
 }
 CACircleTool >> drawCircleFrom: startPoint to: endPoint on: aCACanvasContainer [
 	| center radius caWindow |
@@ -49,7 +49,8 @@ CACircleTool >> drawCircleFrom: startPoint to: endPoint on: aCACanvasContainer [
 	caWindow toolFill ifTrue: [
 		aCACanvasContainer canvas fillCircleAt: center radius: radius color: caWindow secondaryColor.].
 	caWindow toolStroke ifTrue: [
-		aCACanvasContainer canvas drawCircleOutlineAt: center radius: radius color: caWindow primaryColor.].
+		aCACanvasContainer canvas drawCircleOutlineAt: center radius: radius color: caWindow primaryColor width: caWindow toolStrokeWidth.
+		].
 ]
 
 {

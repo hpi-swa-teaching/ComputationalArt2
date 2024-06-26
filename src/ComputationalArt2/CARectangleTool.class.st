@@ -38,7 +38,7 @@ CARectangleTool class >> toolName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:58'
+	#'squeak_changestamp' : 'iss 6/26/2024 13:39'
 }
 CARectangleTool >> drawRectangleFrom: startPoint to: endPoint on: aCACanvasContainer [
 	| topLeft bottomRight width height rect caWindow |
@@ -53,7 +53,7 @@ CARectangleTool >> drawRectangleFrom: startPoint to: endPoint on: aCACanvasConta
 		aCACanvasContainer canvas drawRect: rect color: caWindow secondaryColor.].
 
 	caWindow toolStroke ifTrue: [
-		aCACanvasContainer canvas drawOutlineOfRect: rect withColor: caWindow primaryColor.].
+		aCACanvasContainer canvas drawOutlineOfRect: rect withColor: caWindow primaryColor width: caWindow toolStrokeWidth.].
 ]
 
 {
