@@ -9,30 +9,34 @@ Class {
 		'toolStrokeWidth',
 		'primaryColor',
 		'secondaryColor',
-		'scriptField'
+		'scriptField',
+		'toolContainer'
 	],
 	#category : #ComputationalArt2
 }
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'KH 6/22/2024 16:31'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:48'
 }
 CAWindow class >> create [
 
-	| window canvas menuHeight menuRow buttonContainer canvasToolVBox simButtons simVBox scriptField |	
+	| window menuHeight menuRow canvasToolVBox simButtons simVBox scriptField canvasContainer toolContainer |	
 	window := CAWindow labelled: 'Computational Art'.
 	window activeTool: CAMoveTool new.
 	window minimumExtent: 700@400.
 	
 	menuHeight := (self uiIconButtonPadding * 2 + self uiIconButtonWidth)  * Display uiScaleFactor.
 	
-	buttonContainer := CAToolContainer create: window.
-	canvas := CACanvasContainer newWith: window.
+	canvasContainer := CACanvasContainer newWith: window.
+	window canvasContainer: canvasContainer.
+	
+	toolContainer := CAToolContainer create: window.
+	window toolContainer: toolContainer.
 	canvasToolVBox := self createVBox.
-	canvasToolVBox addMorph: buttonContainer.
+	canvasToolVBox addMorph: toolContainer.
 	canvasToolVBox addMorph: (CAVSpace new dpiHeight: CAWindow uiSpacing).
-	canvasToolVBox addMorph: canvas.
+	canvasToolVBox addMorph: canvasContainer.
 	canvasToolVBox minimumExtent: 300@300.
 	
 	menuRow := self createMenu: window.
@@ -59,9 +63,8 @@ CAWindow class >> create [
  	window addMorph: canvasToolVBox fullFrame:
 		(LayoutFrame fractions: (0.0@0.0 corner: 0.6@1) offsets: (0@menuHeight extent: 0@(-1 * (menuHeight)))).
 	
-	window canvasContainer: canvas.
-	
 	window openInWorld.
+	World activeHand keyboardFocus: nil.
 	^ window
 ]
 
@@ -409,6 +412,22 @@ CAWindow >> secondaryColor: aCARGB [
 }
 CAWindow >> setActiveTool: aTool [
     activeTool := aTool.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:12'
+}
+CAWindow >> toolContainer [
+	^ toolContainer.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:13'
+}
+CAWindow >> toolContainer: aCAToolContainer [
+	toolContainer := aCAToolContainer. 
 ]
 
 {
