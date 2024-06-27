@@ -5,7 +5,8 @@ Class {
 		'activeButton',
 		'toolRow',
 		'contextRow',
-		'caWindow'
+		'caWindow',
+		'previousToolClass'
 	],
 	#category : #ComputationalArt2
 }
@@ -106,6 +107,14 @@ CAToolContainer >> initialize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:41'
+}
+CAToolContainer >> revertToPreviousActiveClass [
+	self setActiveClass: previousToolClass.
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 14:27'
 }
 CAToolContainer >> setActiveButton: aCAToolButton [
@@ -128,6 +137,15 @@ CAToolContainer >> setActiveClass: aCACanvasToolClass [
 	contextBox = nil ifTrue: [contextRow addMorph: newContextBox.]
 		ifFalse: [contextRow replaceSubmorph: contextBox by: newContextBox.].
 	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:41'
+}
+CAToolContainer >> setActiveClassTemporary: aCAToolClass [
+	previousToolClass := caWindow activeTool class.
+	self setActiveClass: aCAToolClass.
 ]
 
 {
