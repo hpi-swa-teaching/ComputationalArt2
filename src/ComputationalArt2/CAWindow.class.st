@@ -368,10 +368,11 @@ CAWindow >> primaryColor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:52'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:22'
 }
 CAWindow >> primaryColor: aCARGB [
 	primaryColor := aCARGB.
+	toolContainer primaryRGB: aCARGB.
 ]
 
 {
@@ -400,10 +401,11 @@ CAWindow >> secondaryColor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:52'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:22'
 }
 CAWindow >> secondaryColor: aCARGB [
 	secondaryColor := aCARGB.
+	toolContainer secondaryRGB: aCARGB.
 ]
 
 {

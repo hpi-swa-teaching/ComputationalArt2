@@ -6,7 +6,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:14'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:26'
 }
 CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
 	"Applies dictionary values to the specified window"
