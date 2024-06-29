@@ -99,6 +99,14 @@ CAIconButton >> active: aBoolean [
 
 {
 	#category : #ui,
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:33'
+}
+CAIconButton >> baseForm [
+	^baseForm.
+]
+
+{
+	#category : #ui,
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 13:10'
 }
 CAIconButton >> baseForm: aForm [

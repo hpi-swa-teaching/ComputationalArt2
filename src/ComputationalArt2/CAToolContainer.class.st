@@ -6,18 +6,22 @@ Class {
 		'toolRow',
 		'contextRow',
 		'caWindow',
-		'previousToolClass'
+		'previousToolClass',
+		'primaryRGBForm',
+		'secondaryRGBForm',
+		'secondaryColorButton',
+		'primaryColorButton'
 	],
 	#category : #ComputationalArt2
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:41'
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:36'
 }
 CAToolContainer class >> create: aCAWindow [
 	
-	| toolContainer contextRow toolRow secondaryColorButton secondaryForm primaryForm primaryColorButton |
+	| toolContainer contextRow toolRow secondaryColorButton primaryColorButton primaryColorForm secondaryColorForm |
 	toolContainer := CAToolContainer new.
 	toolContainer caWindow: aCAWindow.
 	
@@ -37,26 +41,24 @@ CAToolContainer class >> create: aCAWindow [
 	toolContainer addMorph: (CAVSpace new dpiHeight: CAWindow uiSpacing).
 	toolContainer toolRow: toolRow.
 	
-	secondaryForm := Form extent: 1@1 depth: 32.
-	secondaryForm fillColor: aCAWindow secondaryColor morphicColor.
-	secondaryColorButton := CAIconButton newFrom: secondaryForm onClick: [ | colorPicker |
+	secondaryColorForm := Form extent: 1@1 depth: 32.
+	secondaryColorForm fillColor: aCAWindow secondaryColor morphicColor.
+	secondaryColorButton := CAIconButton newFrom: secondaryColorForm onClick: [ | colorPicker |
 		colorPicker := CAColorPickerWindow create.
 		colorPicker startColor: aCAWindow secondaryColor.
 		colorPicker onAccept: [:aCARGB |
-			aCAWindow secondaryColor: aCARGB.
-			secondaryForm fillColor: aCARGB morphicColor.
-			secondaryColorButton updateDisplayIcon.].] ballonText: 'Secondary Color'.
+			aCAWindow secondaryColor: aCARGB.].] ballonText: 'Secondary Color'.
+	toolContainer secondaryColorButton: secondaryColorButton.
 	toolRow addMorph: secondaryColorButton.
 	
-	primaryForm := Form extent: 1@1 depth: 32.
-	primaryForm fillColor: aCAWindow primaryColor morphicColor.
-	primaryColorButton := CAIconButton newFrom: primaryForm onClick: [ | colorPicker |
+	primaryColorForm := Form extent: 1@1 depth: 32.
+	primaryColorForm fillColor: aCAWindow primaryColor morphicColor.
+	primaryColorButton := CAIconButton newFrom: primaryColorForm onClick: [ | colorPicker |
 		colorPicker := CAColorPickerWindow create.
 		colorPicker startColor: aCAWindow primaryColor.
 		colorPicker onAccept: [:aCARGB |
-			aCAWindow primaryColor: aCARGB.
-			primaryForm fillColor: aCARGB morphicColor.
-			primaryColorButton updateDisplayIcon.].] ballonText: 'Primary Color'.
+			aCAWindow primaryColor: aCARGB.].] ballonText: 'Primary Color'.
+	toolContainer primaryColorButton: primaryColorButton.
 	toolRow addMorph: primaryColorButton.
 	
 	toolRow addMorph: CAWindow createHSpaceFiller.
@@ -107,10 +109,44 @@ CAToolContainer >> initialize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:32'
+}
+CAToolContainer >> primaryColorButton: aCAImageButton [
+	primaryColorButton := aCAImageButton.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:33'
+}
+CAToolContainer >> primaryRGB: aCARGB [
+	primaryColorButton baseForm fillColor: aCARGB morphicColor.
+	primaryColorButton updateDisplayIcon.
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:41'
 }
 CAToolContainer >> revertToPreviousActiveClass [
 	self setActiveClass: previousToolClass.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:31'
+}
+CAToolContainer >> secondaryColorButton: aCAImageButton [
+	secondaryColorButton := aCAImageButton.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:34'
+}
+CAToolContainer >> secondaryRGB: aCARGB [
+	secondaryColorButton baseForm fillColor: aCARGB morphicColor.
+	secondaryColorButton updateDisplayIcon.
 ]
 
 {
