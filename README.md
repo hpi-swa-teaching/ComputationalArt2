@@ -92,5 +92,25 @@ canvas width.                                  "The width of the canvas in pixel
 canvas height.                                 "The height of the canvas in pixels."
 canvas rgbAt: aPoint put: aCARGB               "Set the color at the pixel aPoint to aCARGB."
 canvas rgbAt: aPoint                           "Get the color at the pixel aPoint as CARGB."
+canvas pixelsDo: [:x :y | "Code here."]        "Executes the block for all pixel from left to right and top to bottom." canvas fillR:r G: g B: b.                     "Set the fill color to rgb [0, 255] integer."
+canvas fillRGB: aCARGB.                       "Set the fill color the aCARGB."
+canvas fillRGB.                               "Get the fill color as CARGB."
+canvas fillRect: startPoint to: endPoint.
+canvas fillRect: startPoint extent: sizePoint.
+canvas fillCircle: aPoint radius: aNumber.
+canvas strokeWidth: aNumber.                   "Set the stroke width to aNumber integer. (WIP)"
+canvas strokeWidth.                            "Get the stoke width integer".
+canvas strokeR:r G: g B: b.                    "Set the stroke color to rgb [0, 255] integer."
+canvas strokeRGB: aCARGB.                      "Set the stroke color the aCARGB."
+canvas strokeRGB.                              "Get the stroke color as CARGB."
+canvas strokeLine: startPoint to: endPoint.
+canvas strokeRect: startPoint to: endPoint.
+canvas strokeRect: startPoint extent: sizePoint.
+canvas strokeCircle: aPoint radius: aNumber.
+canvas width.                                  "The width of the canvas in pixels."
+canvas height.                                 "The height of the canvas in pixels."
+canvas rgbAt: aPoint put: aCARGB               "Set the color at the pixel aPoint to aCARGB."
+canvas rgbAt: aPoint                           "Get the color at the pixel aPoint as CARGB."
 canvas pixelsDo: [:x :y | "Code here."]        "Executes the block for all pixel from left to right and top to bottom."
+This method allows you to iterate over each pixel on the canvas and execute a block of code for every pixel. 
 ```
