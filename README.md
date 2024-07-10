@@ -13,13 +13,16 @@ CAWindow create.
 ### Use
 Everything lives in a single window. All buttons have tooltips.
 
-![App](https://github.com/hpi-swa-teaching/ComputationalArt2/assets/114243111/0958d454-bf8d-494d-ad82-42f8154cdee0)
+![image](https://github.com/hpi-swa-teaching/ComputationalArt2/assets/114243111/d6fc571c-f9d6-41c4-af20-824bdd629041)
 
-#### Project Menue
-+ Import (WIP): Imports a Project.
-+ Export (WIP): Exports a Project.
+#### Project Menu
++ Import: Imports a Project.
++ Export: Exports a Project.
 + Import Image: Imports an image from as a new canvas.
 + Export Image: Exports the current canvas to an image.
++ Sim Step: Shows the simulation step that is currently visable.
++ Initialization Script: The button to get to the initialization script that is run as sim step 0.
++ Canvas Script: The button to get to the canvas script that will be run per simulation step.
 
 #### Viewport
 The Viewport interacts with the selected tool. The user can interact with the canvas through the tools and the viewport.
@@ -69,9 +72,9 @@ c green.     "Getter for green in range [0, 255]."
 c blue.      "Getter for blue in range [0, 255]."
 ```
 ## Scripting
-The script can be executed using the start button. The user can revert to the state before the execution by pressing the reset button. This is independet of the undo/redo chain.
-### The scripting API
-The user operate on the `canvas` object that is know the script runtime. The canvas exposes methods to draw and get pixel values. Colors are always [0, 255] integers and points are pixel coordinates.
+The simulation can be started using the _Start_ button. The user can pause the simulation by pressing the _Pause_ button. The user can revert to the state before the execution by pressing the _Reset_ button. This is independet of the undo/redo chain. If the simulation is currently not running, the user can press the _Step_ button to only make a single step in the simulation.
+### The Canvas API
+The user operates on the `canvas` object, which is know to the script runtime. The canvas exposes methods to draw and get pixel values. Colors are always [0, 255] integers and points are pixel coordinates. The canvas API is the same for the initialization and canvas script. 
 ```smalltalk
 canvas fillR:r G: g B: b.                     "Set the fill color to rgb [0, 255] integer."
 canvas fillRGB: aCARGB.                       "Set the fill color the aCARGB."
@@ -96,4 +99,59 @@ canvas rgbAt: aPoint put: aCARGB.              "Set the color at the pixel aPoin
 canvas rgbAt: aPoint.                          "Get the color at the pixel aPoint as CARGB."
 canvas rgbBackAt: aPoint.                      "Get the color at the pixel of the backbuffer. The backbuffer is the canvas before the script execution."
 canvas pixelsDo: [:x :y | "Code here."]        "Executes the block for all pixel from left to right and top to bottom."
+```
+### Examples
+Here are some examples on the canvas script.
+
+#### Colorful Circles
+Initialization Script:
+```smalltalk
+canvas fillRGB: CARGB black.
+canvas fillRect: 0@0 to: (canvas width)@(canvas height).
+```
+
+Canvas Script:
+```smalltalk
+| target |
+target := CARGB r: 0 g: 0 b: 0.
+canvas pixelsDo: [:x :y | |rgb|
+	rgb := canvas rgbAt: (x@y).
+	canvas strokeRGB: CARGB random.
+	rgb = target ifTrue: [
+		canvas strokeCircle: (x@y) radius: 6.].].
+```
+
+#### Coloful Conway's Game of Life
+Canvas Script:
+```smalltalk
+canvas pixelsDo: [ :x :y | |sum living thisColor|
+	sum := 0.
+	-1 to: 1 do: [ :yOff |
+		-1 to: 1 do: [ :xOff |
+			((xOff = 0) and: (yOff = 0)) ifFalse: [
+				(canvas rgbBackAt: (x@y) + (xOff@yOff)) red > 0 ifTrue:[
+					sum := sum + 1.
+					].
+				].
+			].
+		].
+	thisColor := canvas rgbBackAt: (x@y).
+	living := thisColor red > 0 or: thisColor green > 0 or: thisColor blue > 0.
+	living ifTrue: [
+		(sum <= 1 or: sum >= 4) ifTrue: [
+			canvas rgbAt: (x@y) put: CARGB black.
+			].
+		]
+	ifFalse: [
+		sum = 3 ifTrue: [
+			canvas fold: {
+			{1.0/sum. 1.0/sum. 1.0/sum.}.
+			{1.0/sum. 1.0/sum. 1.0/sum.}.
+			{1.0/sum. 1.0/sum. 1.0/sum.}.} at: (x@y).
+			].
+		].
+	].
+
+canvas fillRGB: CARGB random.
+canvas fillRect: (100 random)@(100 random) extent: 3@3.
 ```
