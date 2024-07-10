@@ -1,6 +1,9 @@
 Class {
 	#name : #CATabFeature,
 	#superclass : #CAClickableFeature,
+	#classInstVars : [
+		'button'
+	],
 	#category : #ComputationalArt2
 }
 

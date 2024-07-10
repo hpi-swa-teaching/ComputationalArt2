@@ -224,10 +224,10 @@ CACanvasContainer >> step [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:10'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:49'
 }
 CACanvasContainer >> stepTime [
-	^100.
+	^35.
 ]
 
 {
