@@ -4,143 +4,9 @@
 			'assets',
 			'img',
 			'tools',
-			'Save.png'
-		],
-		#encoding : Class [ #PNGReadWriter ]
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Pen.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Pause.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Undo.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
 			'Step.png'
 		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Move.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Start.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Reset.png'
-		],
-		#encoding : @4
-	},
-	SquotTonelMapper {
-		#package : MCPackage {
-			#name : 'ComputationalArt2'
-		},
-		#path : FSAbsolutePath [
-			'src'
-		]
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Import.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Check.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Circle.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Line.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Flood Fill.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Export.png'
-		],
-		#encoding : @4
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'assets',
-			'img',
-			'tools',
-			'Reset Canvas.png'
-		],
-		#encoding : @4
+		#encoding : Class [ #PNGReadWriter ]
 	},
 	SquotImageMapper {
 		#path : FSAbsolutePath [
@@ -165,7 +31,168 @@
 			'assets',
 			'img',
 			'tools',
+			'Check.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
 			'Redo.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Undo.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'tab-initialize.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'tab-pixel.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Import.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Pause.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Start.png'
+		],
+		#encoding : @4
+	},
+	SquotTonelMapper {
+		#package : MCPackage {
+			#name : 'ComputationalArt2'
+		},
+		#path : FSAbsolutePath [
+			'src'
+		]
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Reset Canvas.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Pen.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Reset.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Circle.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Move.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Save.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Line.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Export.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'Flood Fill.png'
+		],
+		#encoding : @4
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'img',
+			'tools',
+			'tab-canvas.png'
 		],
 		#encoding : @4
 	},

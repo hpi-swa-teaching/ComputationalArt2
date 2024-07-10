@@ -31,7 +31,7 @@ CAExportFeature class >> featureName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:08'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:12'
 }
 CAExportFeature class >> saveCanvasPropertiesToFile: aDirectory fileName: aFileName window: aCAWindow [
 	| out container properties canvasForm |
@@ -39,7 +39,8 @@ CAExportFeature class >> saveCanvasPropertiesToFile: aDirectory fileName: aFileN
 	out := FileStream forceNewFileNamed: (aDirectory pathName, '/', aFileName).
 	container := aCAWindow canvasContainer.
 	properties := {
-		'script_text'->aCAWindow scriptField text.
+		'script_content_tabs'->aCAWindow scriptField contentTabs.
+		'script_last_active_tab'->aCAWindow scriptField currentTabname.
 		'canvas_scale'->container canvasScale.
 		'canvas_offset'->container canvasOffset.
 		'primary_color'->aCAWindow primaryColor.

@@ -6,14 +6,14 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:26'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:12'
 }
 CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
 	"Applies dictionary values to the specified window"
 	| d container |
 	d := Compiler evaluate: aDictString.
 	container := aWindow canvasContainer.
-	aWindow scriptField setText: (d at: 'script_text').
+	aWindow scriptField contentTabs: (d at: 'script_content_tabs') defaultTab: (d at: 'script_last_active_tab').
 	aWindow primaryColor: (d at: 'primary_color');
 		secondaryColor: (d at: 'secondary_color').
 	
