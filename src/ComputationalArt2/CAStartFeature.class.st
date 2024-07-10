@@ -10,7 +10,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 14:33'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:51'
 }
 CAStartFeature class >> executeFeature: aCAWindow [
 	| block canvasAPI canvas |

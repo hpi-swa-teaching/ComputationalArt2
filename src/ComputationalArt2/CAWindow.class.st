@@ -17,11 +17,11 @@ Class {
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:48'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:45'
 }
 CAWindow class >> create [
 
-	| window menuHeight menuRow canvasToolVBox simButtons simVBox scriptField canvasContainer toolContainer |	
+	| window menuHeight menuRow canvasToolVBox simButtons simVBox scriptField canvasContainer toolContainer |
 	window := CAWindow labelled: 'Computational Art'.
 	window activeTool: CAMoveTool new.
 	window minimumExtent: 700@400.
@@ -41,7 +41,9 @@ CAWindow class >> create [
 	
 	menuRow := self createMenu: window.
 	
-	scriptField := PluggableTextMorph on: nil text: nil accept: nil.
+	"scriptField := PluggableTextMorph on: nil text: nil accept: nil."
+	scriptField := CAScriptMorph create: {'initialize' -> '"Your initialization code"'. 'pixel'->'"Your pixel manipulation code"'. 'canvas'->'"Your canvas manipulation code"'.} asDictionary
+		defaultTab: 'initialize'.
 	scriptField vResizing: #spaceFill.
 	scriptField hResizing: #spaceFill.
 	scriptField wrapFlag: true.
@@ -104,18 +106,26 @@ CAWindow class >> createHSpaceFiller [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 23:44'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:58'
 }
 CAWindow class >> createMenu: aCAWindow [
 	| assetLoader hBox |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
 	assetLoader := GitAssetLoader for: 'ComputationalArt2'.
+	{CATabCanvasFeature. CATabPixelFeature. CATabInitalizeFeature.} do: [:Tool | | button |
+		button := Tool createFeatureButton: aCAWindow.
+		hBox addMorph: button.
+		].
+
+	hBox addMorph: CAWindow createHSpaceFiller.
+	
 	{CAExportImageFeature. CAImportImageFeature. CAExportFeature. CAImportFeature. } do: [:Tool | | button |
 		button := Tool createFeatureButton: aCAWindow.
 		hBox addMorph: button.
 		(Tool featureName = 'Reset' or: Tool featureName = 'Start') ifTrue:[
 			hBox addMorph: CAWindow createHSpaceFiller.].].
+		
 	^hBox.
 ]
 
