@@ -5,7 +5,8 @@ Class {
 		'canvas',
 		'strokeWidth',
 		'strokeRGB',
-		'fillRGB'
+		'fillRGB',
+		'backbuffer'
 	],
 	#category : #ComputationalArt2
 }
@@ -63,6 +64,49 @@ CACanvasAPI >> fillRect: start to: end [
 
 {
 	#category : #API,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:39'
+}
+CACanvasAPI >> fold: a2DArray [
+	0 to: (self height - 1) do: [ :y |
+		0 to: (self width - 1) do: [ :x |
+			self fold: a2DArray at: (x@y).].].
+]
+
+{
+	#category : #API,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:41'
+}
+CACanvasAPI >> fold: a2DArray at: aPoint [
+	| hm wm b g r |
+	hm := (a2DArray size / 2) floor.
+	wm := (((a2DArray at: 1) size / 2) floor).
+	r := 0.0.
+	g := 0.0.
+	b := 0.0.
+	(hm * -1) to: hm do: [ :yOffset |
+		(wm * -1) to: wm do: [ :xOffset | | color factor |
+			color := self rgbBackAt: aPoint + (xOffset@yOffset).
+			factor := (a2DArray at: (yOffset + hm + 1)) at: (xOffset + wm + 1).
+			r := r + (color red * factor).
+			g := g + (color green * factor).
+			b := b + (color blue * factor).].].
+	self rgbAt: aPoint put: (CARGB r: r g: g b: b).
+]
+
+{
+	#category : #API,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:00'
+}
+CACanvasAPI >> fold: a2DArray
+	| w h [ |
+	w := a2DArray size.
+	w = 0 ifTrue:[^nil].
+	h := a2DArray at: 1.
+	h = 0 ifTrue:[^nil].
+]
+
+{
+	#category : #API,
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:54'
 }
 CACanvasAPI >> height [
@@ -91,10 +135,11 @@ CACanvasAPI >> pixelsDo: aBlock [
 
 {
 	#category : #private,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 13:54'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:42'
 }
 CACanvasAPI >> privateCanvas: aCACanvas [
 	canvas := aCACanvas.
+	backbuffer := aCACanvas form deepCopy.
 ]
 
 {
@@ -113,6 +158,16 @@ CACanvasAPI >> rgbAt: aPoint [
 }
 CACanvasAPI >> rgbAt: aPoint put: aCARGB [
 	^canvas drawPoint: aPoint color: aCARGB.
+]
+
+{
+	#category : #API,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:43'
+}
+CACanvasAPI >> rgbBackAt: aPoint [
+	| p |
+	p := (aPoint x min: (self width - 1) max: 0)@(aPoint y min: (self height - 1) max: 0).
+	^CARGB newFrom: (backbuffer colorAt: p).
 ]
 
 {

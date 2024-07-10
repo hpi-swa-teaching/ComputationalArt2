@@ -88,9 +88,12 @@ canvas strokeLine: startPoint to: endPoint.
 canvas strokeRect: startPoint to: endPoint.
 canvas strokeRect: startPoint extent: sizePoint.
 canvas strokeCircle: aPoint radius: aNumber.
+canvas fold: a2DArray at: aPoint.              "Fold aPoint by the given 2D array kernel."
+canvas fold: a2DArray.                         "Fold the canvas by the given 2D array kernel."
 canvas width.                                  "The width of the canvas in pixels."
 canvas height.                                 "The height of the canvas in pixels."
-canvas rgbAt: aPoint put: aCARGB               "Set the color at the pixel aPoint to aCARGB."
-canvas rgbAt: aPoint                           "Get the color at the pixel aPoint as CARGB."
+canvas rgbAt: aPoint put: aCARGB.              "Set the color at the pixel aPoint to aCARGB."
+canvas rgbAt: aPoint.                          "Get the color at the pixel aPoint as CARGB."
+canvas rgbBackAt: aPoint.                      "Get the color at the pixel of the backbuffer. The backbuffer is the canvas before the script execution."
 canvas pixelsDo: [:x :y | "Code here."]        "Executes the block for all pixel from left to right and top to bottom."
 ```
