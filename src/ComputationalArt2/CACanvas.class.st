@@ -32,21 +32,23 @@ CACanvas class >> new: aWidth height: aHeight depth: aDepth [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/13/2024 16:39'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CACanvas >> clearColor: aColor [
 
 	self saveState.
+	self commit.
 	stagedCanvas form fillWithColor: aColor.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/13/2024 16:13'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CACanvas >> clearImage: aForm [
 	
 	self saveState.
+	self commit.
 	stagedCanvas image: aForm at: 0@0.
 ]
 
@@ -60,7 +62,7 @@ CACanvas >> colorAt: aPosition [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:05'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CACanvas >> commit [
 	stableCanvas setForm: stagedCanvas form deepCopy.
@@ -68,7 +70,7 @@ CACanvas >> commit [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:49'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:21'
 }
 CACanvas >> create [
 	
@@ -78,6 +80,7 @@ CACanvas >> create [
 	(self width)@(self height) depth: (self depth).
 	
 	self clearColor: defaultColor.
+	self resetUndoStack.
 	self commit.
 ]
 
@@ -289,6 +292,14 @@ CACanvas >> redo [
 CACanvas >> reset [
 
 	stagedCanvas setForm: stableCanvas form deepCopy.
+]
+
+{
+	#category : #api,
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:21'
+}
+CACanvas >> resetUndoStack [
+	undoStack := OrderedCollection new.
 ]
 
 {
