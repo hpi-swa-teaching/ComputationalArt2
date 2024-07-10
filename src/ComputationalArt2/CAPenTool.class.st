@@ -41,10 +41,11 @@ CAPenTool >> drawAt: aPoint on: aCACanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:36'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CAPenTool >> handleMouseDown: anEvent on: aCACanvasContainer [
 	aCACanvasContainer canvas saveState.
+	aCACanvasContainer canvas commit.
 	isDrawing := true.
 	self drawAt: (aCACanvasContainer getPixelPosition: anEvent position) on: aCACanvasContainer.
 

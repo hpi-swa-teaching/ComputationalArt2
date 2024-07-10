@@ -58,7 +58,7 @@ CARectangleTool >> drawRectangleFrom: startPoint to: endPoint on: aCACanvasConta
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/14/2024 07:24'
+	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CARectangleTool >> handleMouseDown: anEvent on: aCACanvasContainer [
 	aCACanvasContainer canvas saveState.
