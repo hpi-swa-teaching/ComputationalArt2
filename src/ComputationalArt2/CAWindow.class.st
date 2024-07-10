@@ -10,14 +10,17 @@ Class {
 		'primaryColor',
 		'secondaryColor',
 		'scriptField',
-		'toolContainer'
+		'toolContainer',
+		'simulationStep',
+		'isSimulating',
+		'menuRow'
 	],
 	#category : #ComputationalArt2
 }
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:45'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:30'
 }
 CAWindow class >> create [
 
@@ -40,8 +43,8 @@ CAWindow class >> create [
 	canvasToolVBox minimumExtent: 300@300.
 	
 	menuRow := self createMenu: window.
+	window menuRow: menuRow.
 	
-	"scriptField := PluggableTextMorph on: nil text: nil accept: nil."
 	scriptField := CAScriptMorph create: {'initialize' -> '"Your initialization code"'. 'pixel'->'"Your pixel manipulation code"'. 'canvas'->'"Your canvas manipulation code"'.} asDictionary
 		defaultTab: 'initialize'.
 	scriptField vResizing: #spaceFill.
@@ -106,18 +109,25 @@ CAWindow class >> createHSpaceFiller [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:58'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:39'
 }
 CAWindow class >> createMenu: aCAWindow [
-	| assetLoader hBox |
+	| assetLoader hBox simStepMorph |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
 	assetLoader := GitAssetLoader for: 'ComputationalArt2'.
-	{CATabCanvasFeature. CATabPixelFeature. CATabInitalizeFeature.} do: [:Tool | | button |
-		button := Tool createFeatureButton: aCAWindow.
+	{CATabCanvasFeature. CATabInitalizeFeature.} do: [:Feature | | button |
+		button := Feature createFeatureButton: aCAWindow.
 		hBox addMorph: button.
+		Feature = CATabInitalizeFeature ifTrue: [button active: true.].
 		].
 
+	hBox addMorph: CAWindow createHSpaceFiller.
+	
+	simStepMorph := CAStringMorph new contents: 'Sim Step: 0'.
+	simStepMorph name: 'simStep'.
+	hBox addMorph: simStepMorph.
+	
 	hBox addMorph: CAWindow createHSpaceFiller.
 	
 	{CAExportImageFeature. CAImportImageFeature. CAExportFeature. CAImportFeature. } do: [:Tool | | button |
@@ -348,7 +358,7 @@ CAWindow >> canvasContainer: aCanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:28'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:42'
 }
 CAWindow >> initialize [
 	super initialize.
@@ -358,6 +368,40 @@ CAWindow >> initialize [
 	toolStrokeWidth := 1.
 	primaryColor := CARGB black.
 	secondaryColor := CARGB white.
+	simulationStep := 0.
+	isSimulating := false.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+}
+CAWindow >> isSimulating [
+	^ isSimulating
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+}
+CAWindow >> isSimulating: anObject [
+	isSimulating := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:31'
+}
+CAWindow >> menuRow [
+	^ menuRow
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:31'
+}
+CAWindow >> menuRow: anObject [
+	menuRow := anObject
 ]
 
 {
@@ -424,6 +468,23 @@ CAWindow >> secondaryColor: aCARGB [
 }
 CAWindow >> setActiveTool: aTool [
     activeTool := aTool.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:47'
+}
+CAWindow >> simulationStep [
+	^ simulationStep
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:41'
+}
+CAWindow >> simulationStep: aNumber [
+	simulationStep := aNumber.
+	(menuRow submorphNamed: 'simStep') contents: 'Sim Step: ',aNumber.
 ]
 
 {

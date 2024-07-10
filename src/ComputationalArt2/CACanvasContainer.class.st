@@ -213,6 +213,25 @@ CACanvasContainer >> mouseWheel: anEvent [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:22'
+}
+CACanvasContainer >> step [
+	caWindow isSimulating ifTrue: [
+		CAStepFeature executeFeature: caWindow.].
+	super step.
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:49'
+}
+CACanvasContainer >> stepTime [
+	^35.
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 01:02'
 }
 CACanvasContainer >> updateForm [

@@ -64,14 +64,12 @@ CACanvasAPI >> fillRect: start to: end [
 
 {
 	#category : #API,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:00'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:58'
 }
 CACanvasAPI >> fold: a2DArray [
-	| w h |
-	w := a2DArray size.
-	w = 0 ifTrue:[^nil].
-	h := a2DArray at: 1.
-	h = 0 ifTrue:[^nil].
+	0 to: (self height - 1) do: [ :y |
+		0 to: (self width - 1) do: [ :x |
+			self fold: a2DArray at: x@y.].].
 ]
 
 {
@@ -125,7 +123,7 @@ CACanvasAPI >> pixelsDo: aBlock [
 
 {
 	#category : #private,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:42'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:48'
 }
 CACanvasAPI >> privateCanvas: aCACanvas [
 	canvas := aCACanvas.

@@ -44,17 +44,20 @@ CAIconButton class >> hoverColor [
 
 {
 	#category : #'instance creation',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/7/2024 00:13'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:23'
 }
 CAIconButton class >> newFeatureButton: aFeatureClass onClick: aBlock [
-	^self newFrom: aFeatureClass buttonForm
+	| button |
+	button := self newFrom: aFeatureClass buttonForm
 		onClick: aBlock
 		ballonText: aFeatureClass featureName.
+	^button.
+		
 ]
 
 {
 	#category : #'instance creation',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/7/2024 00:08'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:22'
 }
 CAIconButton class >> newFrom: aForm onClick: aBlock ballonText: aString [
 	| button |
