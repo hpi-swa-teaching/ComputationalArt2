@@ -30,6 +30,17 @@ CAScriptMorph >> content [
 
 {
 	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:26'
+}
+CAScriptMorph >> contentOfTab: aTabName [
+	aTabName = self currentTabname ifTrue: [
+		^self text deepCopy].
+	
+	^ contentTabs at: aTabName.
+]
+
+{
+	#category : #accessing,
 	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 11:35'
 }
 CAScriptMorph >> contentTabs [

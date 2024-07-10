@@ -6,10 +6,10 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:55'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:34'
 }
 CATabCanvasFeature class >> featureName [
-	^'tab-canvas'.
+	^'Canvas Script'.
 ]
 
 {

@@ -10,18 +10,10 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:51'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:32'
 }
 CAStartFeature class >> executeFeature: aCAWindow [
-	| block canvasAPI canvas |
-	canvas := aCAWindow canvasContainer canvas.
-	canvas reset.
-	block := Compiler evaluate: '[:canvas | ', aCAWindow scriptField text,']'.
-	canvasAPI := CACanvasAPI new.
-	canvasAPI privateCanvas: canvas.
-	block value: canvasAPI.
-	
-	aCAWindow canvasContainer updateForm.
+	aCAWindow isSimulating: true.
 ]
 
 {

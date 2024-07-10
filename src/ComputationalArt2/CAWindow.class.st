@@ -10,7 +10,9 @@ Class {
 		'primaryColor',
 		'secondaryColor',
 		'scriptField',
-		'toolContainer'
+		'toolContainer',
+		'simulationStep',
+		'isSimulating'
 	],
 	#category : #ComputationalArt2
 }
@@ -348,7 +350,7 @@ CAWindow >> canvasContainer: aCanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:28'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:42'
 }
 CAWindow >> initialize [
 	super initialize.
@@ -358,6 +360,24 @@ CAWindow >> initialize [
 	toolStrokeWidth := 1.
 	primaryColor := CARGB black.
 	secondaryColor := CARGB white.
+	simulationStep := 0.
+	isSimulating := false.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+}
+CAWindow >> isSimulating [
+	^ isSimulating
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+}
+CAWindow >> isSimulating: anObject [
+	isSimulating := anObject
 ]
 
 {
@@ -424,6 +444,22 @@ CAWindow >> secondaryColor: aCARGB [
 }
 CAWindow >> setActiveTool: aTool [
     activeTool := aTool.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:47'
+}
+CAWindow >> simulationStep [
+	^ simulationStep
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:47'
+}
+CAWindow >> simulationStep: anObject [
+	simulationStep := anObject
 ]
 
 {

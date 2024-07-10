@@ -10,12 +10,14 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:23'
+	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:20'
 }
 CAResetFeature class >> executeFeature: aCAWindow [
 	|  canvasContainer |
 	canvasContainer := aCAWindow canvasContainer.
 	canvasContainer canvas reset.
+	aCAWindow isSimulating: false.
+	aCAWindow simulationStep: 0.
 	canvasContainer updateForm.
 	
 ]
