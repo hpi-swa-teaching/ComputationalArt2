@@ -2,12 +2,11 @@ Class {
 	#name : #CACanvasContainer,
 	#superclass : #PasteUpMorph,
 	#instVars : [
-		'caCanvas',
-		'imageMorph',
-		'canvasOffset',
 		'caWindow',
-		'canvasScale',
-		'form'
+		'caCanvas',
+		'canvasOffset',
+		'imageMorph',
+		'canvasScale'
 	],
 	#category : #ComputationalArt2
 }
@@ -22,10 +21,10 @@ CACanvasContainer class >> newWith: aCAWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/12/2024 18:06'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:13'
 }
 CACanvasContainer >> caWindow [
-	^caWindow
+	^caWindow.
 ]
 
 {
@@ -37,49 +36,47 @@ CACanvasContainer >> caWindow: aCAWindow [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 12:43'
+	#category : #'project state',
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> canvas [
-	^ caCanvas
+	^caCanvas.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 13:57'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:42'
 }
 CACanvasContainer >> canvasOffset [
 	^canvasOffset.
-	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 14:23'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:42'
 }
 CACanvasContainer >> canvasOffset: aPoint [
 	canvasOffset := aPoint.
 	imageMorph position: self position + canvasOffset.
-	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 16:33'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> canvasOffset: aPoint scale: aNumber [
-	self canvasScale: aNumber.
-	self canvasOffset: aPoint.
+	self canvasScale: aNumber;
+		canvasOffset: aPoint.
 	
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 15:00'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> canvasScale [
-	^canvasScale
+	^canvasScale.
 ]
 
 {
@@ -94,10 +91,10 @@ CACanvasContainer >> canvasScale: aNumber [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 16:04'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> clampScale: aNumber [
-	^ aNumber min: 16.0 max: 0.125.
+	^aNumber min: 16.0 max: 0.125.
 ]
 
 {
@@ -109,16 +106,15 @@ CACanvasContainer >> getPixelPosition: aPoint [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:33'
+	#category : #'event handling',
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> handlesKeyboard: anEvent [
-	anEvent keyCode = 16 ifTrue: [^true.].
-	 ^ false.
+	^anEvent keyCode = 16.
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 11:48'
 }
 CACanvasContainer >> handlesMouseDown: anEvent [
@@ -126,7 +122,7 @@ CACanvasContainer >> handlesMouseDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 13:14'
 }
 CACanvasContainer >> handlesMouseMove: anEvent [
@@ -134,7 +130,7 @@ CACanvasContainer >> handlesMouseMove: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 14:43'
 }
 CACanvasContainer >> handlesMouseWheel: anEvent [
@@ -142,16 +138,16 @@ CACanvasContainer >> handlesMouseWheel: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:40'
+	#category : #initialization,
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:15'
 }
 CACanvasContainer >> initialize [
 	super initialize.
-	self color: Color transparent.
-	self borderWidth: 1.
-	self minimumExtent: 128@128.
-	self hResizing: #spaceFill.
-	self vResizing: #spaceFill.
+	self color: Color transparent;
+		borderWidth: 1;
+		minimumExtent: 128@128;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill.
 	canvasOffset := 0@0.
 	canvasScale := 1.0.
 	
@@ -164,7 +160,7 @@ CACanvasContainer >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:42'
 }
 CACanvasContainer >> keyDown: anEvent [
@@ -172,7 +168,7 @@ CACanvasContainer >> keyDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:40'
 }
 CACanvasContainer >> keyUp: anEvent [
@@ -180,7 +176,7 @@ CACanvasContainer >> keyUp: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:02'
 }
 CACanvasContainer >> mouseDown: anEvent [
@@ -188,7 +184,7 @@ CACanvasContainer >> mouseDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 13:35'
 }
 CACanvasContainer >> mouseMove: anEvent [
@@ -196,7 +192,7 @@ CACanvasContainer >> mouseMove: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:04'
 }
 CACanvasContainer >> mouseUp: anEvent [
@@ -204,7 +200,7 @@ CACanvasContainer >> mouseUp: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'event handling',
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 14:44'
 }
 CACanvasContainer >> mouseWheel: anEvent [
@@ -212,7 +208,7 @@ CACanvasContainer >> mouseWheel: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'stepping and presenter',
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:22'
 }
 CACanvasContainer >> step [
@@ -223,7 +219,7 @@ CACanvasContainer >> step [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'stepping and presenter',
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:49'
 }
 CACanvasContainer >> stepTime [

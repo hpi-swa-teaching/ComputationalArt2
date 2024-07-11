@@ -180,10 +180,10 @@ CAIconButton >> iconWidth: aNumber [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 12:14'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:27'
 }
 CAIconButton >> iconWidthPixel [
-	^ (iconWidth * Display uiScaleFactor) ceiling.
+	^(iconWidth * Display uiScaleFactor) ceiling.
 ]
 
 {

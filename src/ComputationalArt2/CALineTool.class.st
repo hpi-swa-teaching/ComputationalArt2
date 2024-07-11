@@ -43,10 +43,9 @@ CALineTool >> handleMouseDown: anEvent on: aCACanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:58'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 01:37'
 }
 CALineTool >> handleMouseMove: anEvent on: aCACanvasContainer [
-
 	startPoint ifNotNil: [ | endPoint caWindow |
 		caWindow := aCACanvasContainer caWindow.
 		aCACanvasContainer canvas reset.

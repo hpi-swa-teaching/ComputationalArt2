@@ -103,12 +103,12 @@ CACanvasAPI >> height [
 
 {
 	#category : #private,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:34'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
 CACanvasAPI >> initialize [
-	self strokeRGB: (CARGB black).
-	self fillRGB: (CARGB black).
-	self strokeWidth: 1.
+	self strokeRGB: (CARGB black);
+		fillRGB: (CARGB black);
+		strokeWidth: 1.
 ]
 
 {
@@ -132,11 +132,9 @@ CACanvasAPI >> privateCanvas: aCACanvas [
 
 {
 	#category : #API,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:59'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
 CACanvasAPI >> rgbAt: aPoint [
-	| p |
-	p := (aPoint x min: (self width) max: 0)@(aPoint y min: (self height) max: 0).
 	^canvas colorAt: aPoint.
 ]
 

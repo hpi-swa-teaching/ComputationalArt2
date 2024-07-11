@@ -2,15 +2,13 @@ Class {
 	#name : #CAToolContainer,
 	#superclass : #Morph,
 	#instVars : [
-		'activeButton',
-		'toolRow',
-		'contextRow',
 		'caWindow',
+		'contextRow',
+		'primaryColorButton',
 		'previousToolClass',
-		'primaryRGBForm',
-		'secondaryRGBForm',
 		'secondaryColorButton',
-		'primaryColorButton'
+		'activeButton',
+		'toolRow'
 	],
 	#category : #ComputationalArt2
 }
@@ -74,7 +72,7 @@ CAToolContainer class >> create: aCAWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 14:30'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:39'
 }
 CAToolContainer >> caWindow: aCAWindow [
 	caWindow := aCAWindow.
@@ -82,7 +80,7 @@ CAToolContainer >> caWindow: aCAWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 14:27'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:39'
 }
 CAToolContainer >> contextRow: aMorph [
 	contextRow := aMorph.
@@ -90,7 +88,7 @@ CAToolContainer >> contextRow: aMorph [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialization,
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 17:35'
 }
 CAToolContainer >> initialize [
@@ -109,7 +107,7 @@ CAToolContainer >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:32'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:39'
 }
 CAToolContainer >> primaryColorButton: aCAImageButton [
 	primaryColorButton := aCAImageButton.
@@ -126,7 +124,7 @@ CAToolContainer >> primaryRGB: aCARGB [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:41'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:39'
 }
 CAToolContainer >> revertToPreviousActiveClass [
 	self setActiveClass: previousToolClass.
@@ -134,7 +132,7 @@ CAToolContainer >> revertToPreviousActiveClass [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:31'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:40'
 }
 CAToolContainer >> secondaryColorButton: aCAImageButton [
 	secondaryColorButton := aCAImageButton.
@@ -151,17 +149,17 @@ CAToolContainer >> secondaryRGB: aCARGB [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 14:27'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:40'
 }
 CAToolContainer >> setActiveButton: aCAToolButton [
-	activeButton = nil ifFalse: [activeButton active: false].
+	activeButton isNil ifFalse: [activeButton active: false].
 	activeButton := aCAToolButton.
 	activeButton active: true.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/8/2024 22:55'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:40'
 }
 CAToolContainer >> setActiveClass: aCACanvasToolClass [
 	| contextBox newContextBox |
@@ -170,9 +168,9 @@ CAToolContainer >> setActiveClass: aCACanvasToolClass [
 	contextBox := contextRow submorphNamed: 'contextBox'.
 	newContextBox := aCACanvasToolClass createContextBox: caWindow.
 	newContextBox name: 'contextBox'.
-	contextBox = nil ifTrue: [contextRow addMorph: newContextBox.]
+	contextBox isNil ifTrue: [contextRow addMorph: newContextBox.]
 		ifFalse: [contextRow replaceSubmorph: contextBox by: newContextBox.].
-	
+
 ]
 
 {

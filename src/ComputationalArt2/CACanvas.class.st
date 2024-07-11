@@ -16,39 +16,37 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 00:58'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:15'
 }
 CACanvas class >> new: aWidth height: aHeight [
-	^ self new: aWidth height: aHeight depth: Display depth.
+	^self new: aWidth height: aHeight depth: Display depth.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 00:57'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:15'
 }
 CACanvas class >> new: aWidth height: aHeight depth: aDepth [
-	^ CACanvas new width: aWidth; height: aHeight; depth: aDepth.
+	^CACanvas new width: aWidth; height: aHeight; depth: aDepth.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:05'
 }
 CACanvas >> clearColor: aColor [
-
-	self saveState.
-	self commit.
+	self saveState;
+		commit.
 	stagedCanvas form fillWithColor: aColor.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:05'
 }
 CACanvas >> clearImage: aForm [
-	
-	self saveState.
-	self commit.
+	self saveState;
+		commit.
 	stagedCanvas image: aForm at: 0@0.
 ]
 
@@ -70,26 +68,25 @@ CACanvas >> commit [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:21'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:06'
 }
 CACanvas >> create [
-	
 	stableCanvas := FormCanvas extent:
 	(self width)@(self height)depth: (self depth).
 	stagedCanvas := FormCanvas extent:
 	(self width)@(self height) depth: (self depth).
 	
-	self clearColor: defaultColor.
-	self resetUndoStack.
-	self commit.
+	self clearColor: defaultColor;
+		resetUndoStack;
+		commit.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 00:55'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:10'
 }
 CACanvas >> depth [
-	^ depth
+	^ depth.
 ]
 
 {
@@ -102,12 +99,10 @@ CACanvas >> depth: aDepth [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'iss 6/26/2024 12:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:10'
 }
 CACanvas >> drawCircleOutlineAt: center radius: radius color: aCARGB width: aLineWidth [
-
 	| angle stepAngle x y points |
-	
 	points := OrderedCollection new.
 	stepAngle := (2 * Float pi) / 100.
 	
@@ -125,31 +120,28 @@ CACanvas >> drawCircleOutlineAt: center radius: radius color: aCARGB width: aLin
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:06'
 }
 CACanvas >> drawLine: aStartPoint to: anEndPoint width: aLineWidth color: aCARGB [
-
 	stagedCanvas line: aStartPoint to: anEndPoint
 		width: aLineWidth color: aCARGB.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/26/2024 12:55'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
 }
 CACanvas >> drawOutlineOfRect: rect withColor: aCARGB width: aLineWidth [
-
 	| topEdge bottomEdge leftEdge rightEdge |
-	
 	topEdge := Rectangle origin: rect topLeft extent: rect width @ aLineWidth.
 	bottomEdge := Rectangle origin: rect bottomLeft - (0 @ aLineWidth) extent: rect width @ aLineWidth.
 	leftEdge := Rectangle origin: rect topLeft extent: aLineWidth @ rect height.
 	rightEdge := Rectangle origin: rect topRight - (aLineWidth @ 0) extent: aLineWidth @ rect height.
 	
-	self drawRect: topEdge color: aCARGB.
-	self drawRect: bottomEdge color: aCARGB.
-	self drawRect: leftEdge color: aCARGB.
-	self drawRect: rightEdge color: aCARGB.
+	self drawRect: topEdge color: aCARGB;
+		drawRect: bottomEdge color: aCARGB;
+		drawRect: leftEdge color: aCARGB;
+		drawRect: rightEdge color: aCARGB.
 ]
 
 {
@@ -162,19 +154,17 @@ CACanvas >> drawPoint: aPoint color: aCARGB [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:06'
 }
 CACanvas >> drawRect: aRectangle color: aCARGB [
-
 	stagedCanvas fillRectangle: aRectangle color: aCARGB.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:06'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:07'
 }
 CACanvas >> drawRect: aStartPoint to: anEndPoint color: aCARGB [
-
 	stagedCanvas fillRectangle:
 		(Rectangle origin: aStartPoint corner: anEndPoint) color: aCARGB.
 ]
@@ -198,13 +188,12 @@ CACanvas >> fillCircleAt: center radius: radius color: aCARGB [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:01'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
 }
 CACanvas >> fillFrom: startPoint withColor: aCARGB [
-
 	| stack oldColor |
 	oldColor  := self colorAt: startPoint.
-	oldColor = aCARGB ifTrue: [ ^self ].
+	oldColor = aCARGB ifTrue: [ ^self. ].
 	stack := OrderedCollection new.
 	stack add: startPoint.
 	[ stack isEmpty ] whileFalse: [
@@ -214,7 +203,7 @@ CACanvas >> fillFrom: startPoint withColor: aCARGB [
 			self drawPoint: point color: aCARGB.
 			neighbors := { point + (1@0). point - (1@0). point + (0@1). point - (0@1) }.
 			neighbors do: [ :neighbor |
-				(self isInBounds: neighbor) ifTrue: [ stack add: neighbor ].
+				(self isInBounds: neighbor) ifTrue: [ stack add: neighbor. ].
 			].
 		].
 	].
@@ -230,26 +219,25 @@ CACanvas >> form [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:22'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
 }
 CACanvas >> height [
-	^ height
+	^ height.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/12/2024 18:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
 }
 CACanvas >> height: aHeight [
-	height := aHeight
+	height := aHeight.
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:03'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:07'
 }
 CACanvas >> initialize [
-
 	defaultColor := Color gray.
 	undoStack := OrderedCollection new.
 	redoStack := OrderedCollection new.
@@ -266,18 +254,17 @@ CACanvas >> isInBounds: aPoint [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:06'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
 }
 CACanvas >> maxStackSize [
-	^50
+	^50.
 ]
 
 {
 	#category : #'state management',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:40'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:07'
 }
 CACanvas >> redo [
-
 	redoStack isEmpty ifTrue: [self inform: 'no more redo actions'
 		] ifFalse: [undoStack add: (stagedCanvas form deepCopy).
 		stagedCanvas setForm: redoStack removeLast.
@@ -287,10 +274,9 @@ CACanvas >> redo [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:32'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:07'
 }
 CACanvas >> reset [
-
 	stagedCanvas setForm: stableCanvas form deepCopy.
 ]
 
@@ -304,32 +290,25 @@ CACanvas >> resetUndoStack [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/12/2024 18:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:12'
 }
 CACanvas >> resize [
-	
 	| oldForm |
 	oldForm := stableCanvas form.
-	
 	stableCanvas := FormCanvas extent:
 		(self width)@(self height) depth: (self depth).
 	stagedCanvas := FormCanvas extent:
 		(self width)@(self height) depth: (self depth).
-	
-	self clearColor: defaultColor.
-	self clearImage: oldForm.
-	self commit.
+	self clearColor: defaultColor;
+		clearImage: oldForm;
+		commit.
 ]
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Tyron Franzke 6/12/2024 18:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
 CACanvas >> resize: aWidth height: aHeight [
-	
-	| oldForm |
-	oldForm := stableCanvas form.
-	
 	width := aWidth.
 	height := aHeight.
 	self resize.
@@ -337,10 +316,9 @@ CACanvas >> resize: aWidth height: aHeight [
 
 {
 	#category : #'state management',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:41'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
 CACanvas >> saveState [
-
 	undoStack size >= self maxStackSize ifTrue: [undoStack removeFirst].
 	undoStack add: (stagedCanvas form deepCopy).
 	redoStack := OrderedCollection new.
@@ -348,10 +326,9 @@ CACanvas >> saveState [
 
 {
 	#category : #'state management',
-	#'squeak_changestamp' : 'iss 6/13/2024 16:39'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
 CACanvas >> undo [
-
 	undoStack isEmpty ifTrue: [self inform: 'no more undo actions'
 		] ifFalse: [redoStack add: (stagedCanvas form deepCopy).
 		stagedCanvas setForm: undoStack removeLast.
@@ -361,16 +338,16 @@ CACanvas >> undo [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 00:55'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:13'
 }
 CACanvas >> width [
-	^ width
+	^ width.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/12/2024 18:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:13'
 }
 CACanvas >> width: aWidth [
-	width := aWidth
+	width := aWidth.
 ]

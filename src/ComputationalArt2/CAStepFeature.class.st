@@ -10,13 +10,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:42'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:21'
 }
 CAStepFeature class >> executeFeature: aCAWindow [
 	| block canvasAPI canvas code |
-	
 	canvas := aCAWindow canvasContainer canvas.
-	
 	(aCAWindow simulationStep = 0) ifTrue: [
 		code := aCAWindow scriptField contentOfTab: CATabInitalizeFeature tabName.
 		block := Compiler evaluate: ('[:canvas | ', code ,']').

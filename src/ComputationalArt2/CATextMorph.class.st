@@ -31,13 +31,12 @@ CATextMorph >> drawOn: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 02:09'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:26'
 }
 CATextMorph >> initialize [
 	super initialize.
 	self minimumWidth: 10.
 	self backgroundColor: CAWindow uiDarkerBackground.
-	"self setProperty: #indicateKeyboardFocus toValue: #never."
 ]
 
 {

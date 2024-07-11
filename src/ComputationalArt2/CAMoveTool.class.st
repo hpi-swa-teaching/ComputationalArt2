@@ -40,7 +40,7 @@ CAMoveTool >> handleMouseMove: anEvent on: aCACanvasContainer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/3/2024 18:31'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:17'
 }
 CAMoveTool >> handleMouseWheel: anEvent on: aCACanvasContainer [
 	| deltaY currentScale newScale mousePosition currentMouseCanvasOffset newMouseCanvasOffset currentCanvasOffset newCanvasOffset |
@@ -55,7 +55,4 @@ CAMoveTool >> handleMouseWheel: anEvent on: aCACanvasContainer [
 	newCanvasOffset := mousePosition + newMouseCanvasOffset.
 	
 	aCACanvasContainer canvasOffset: newCanvasOffset scale: newScale.
-	
-	
-	
 ]

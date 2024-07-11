@@ -6,7 +6,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:12'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
 	"Applies dictionary values to the specified window"
@@ -16,29 +16,26 @@ CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
 	aWindow scriptField contentTabs: (d at: 'script_content_tabs') defaultTab: (d at: 'script_last_active_tab').
 	aWindow primaryColor: (d at: 'primary_color');
 		secondaryColor: (d at: 'secondary_color').
-	
 	container canvasScale: (d at: 'canvas_scale');
 		canvasOffset: (d at: 'canvas_offset').
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:12'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> deserializeFormFromString: aFormString [
 	"Deserializes the Form from the string"
-	^ Compiler evaluate: aFormString.
+	^Compiler evaluate: aFormString.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:00'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> executeFeature: aCAWindow [
 	| stream dictString formString loadedForm fileContents separatorIndex |
-	
 	stream := self openImageFileChooser.
-	
 	stream ifNotNil: [
 		fileContents := stream upToEnd.
     		separatorIndex := fileContents indexOfSubCollection: '---spacer---'.
@@ -54,20 +51,20 @@ CAImportFeature class >> executeFeature: aCAWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 01:58'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> extractDictionaryStringFrom: fileContents separatorIndex: separatorIndex [
 	"Extracts the form string from the stream"
-	^ fileContents copyFrom: 1 to: separatorIndex - 1.
+	^fileContents copyFrom: 1 to: separatorIndex - 1.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 01:56'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> extractFormStringFrom: fileContents separatorIndex: separatorIndex [
 	"Extracts the form string from the stream"
-	^ fileContents copyFrom: separatorIndex + 12 to: fileContents size.
+	^fileContents copyFrom: separatorIndex + 12 to: fileContents size.
 ]
 
 {
@@ -80,15 +77,15 @@ CAImportFeature class >> featureName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 01:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> openImageFileChooser [
 	"Opens a file chooser for selecting an image file"
 	| fc |
 	fc := FileChooser new.
-	fc initializeAsSystemWindowWithCaptionPane.
-	fc setCaption: 'Select an image file.' translated.
-	^ fc open
+	fc initializeAsSystemWindowWithCaptionPane;
+		setCaption: 'Select an image file.' translated.
+	^fc open.
 ]
 
 {

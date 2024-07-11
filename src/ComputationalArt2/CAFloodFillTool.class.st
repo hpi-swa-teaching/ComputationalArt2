@@ -29,12 +29,12 @@ CAFloodFillTool class >> toolName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:17'
 }
 CAFloodFillTool >> handleMouseDown: anEvent on: aCACanvasContainer [
 	| startPoint |
-	aCACanvasContainer canvas saveState.
-	aCACanvasContainer canvas commit.
+	aCACanvasContainer canvas saveState;
+		commit.
 	startPoint := aCACanvasContainer getPixelPosition: anEvent position.
 	aCACanvasContainer canvas fillFrom: startPoint withColor:
 		aCACanvasContainer caWindow primaryColor.

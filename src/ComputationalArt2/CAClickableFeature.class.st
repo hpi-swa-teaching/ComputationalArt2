@@ -30,8 +30,8 @@ CAClickableFeature class >> executeFeature: aCAWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 23:33'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:18'
 }
 CAClickableFeature class >> featureName [
-	^'Tool'
+	^'Tool'.
 ]

@@ -20,9 +20,17 @@ Class {
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:30'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:36'
 }
 CAWindow class >> create [
+	^self create: true.
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:37'
+}
+CAWindow class >> create: aBoolean [
 
 	| window menuHeight menuRow canvasToolVBox simButtons simVBox scriptField canvasContainer toolContainer |
 	window := CAWindow labelled: 'Computational Art'.
@@ -68,9 +76,10 @@ CAWindow class >> create [
  	window addMorph: canvasToolVBox fullFrame:
 		(LayoutFrame fractions: (0.0@0.0 corner: 0.6@1) offsets: (0@menuHeight extent: 0@(-1 * (menuHeight)))).
 	
-	window openInWorld.
-	World activeHand keyboardFocus: nil.
-	^ window
+	aBoolean ifTrue: [
+		window openInWorld.
+		World activeHand keyboardFocus: nil. ].
+	^window.
 ]
 
 {
@@ -109,13 +118,13 @@ CAWindow class >> createHSpaceFiller [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:39'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:32'
 }
 CAWindow class >> createMenu: aCAWindow [
-	| assetLoader hBox simStepMorph |
+	| hBox simStepMorph |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
-	assetLoader := GitAssetLoader for: 'ComputationalArt2'.
+	"assetLoader := GitAssetLoader for: 'ComputationalArt2'."
 	{CATabCanvasFeature. CATabInitalizeFeature.} do: [:Feature | | button |
 		button := Feature createFeatureButton: aCAWindow.
 		hBox addMorph: button.
@@ -141,13 +150,13 @@ CAWindow class >> createMenu: aCAWindow [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 23:46'
+	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:32'
 }
 CAWindow class >> createSimulationsButtons: aCAWindow [
-	| hBox assetLoader |
+	| hBox |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
-	assetLoader := GitAssetLoader for: 'ComputationalArt2'.
+	"assetLoader := GitAssetLoader for: 'ComputationalArt2'."
 	{CAResetFeature. CAPauseFeature. CAStartFeature. CAStepFeature} do: [:Feature | | button |
 		button := Feature createFeatureButton: aCAWindow.
 		hBox addMorph: button.
@@ -240,15 +249,15 @@ CAWindow class >> createVBox [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 20:42'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:23'
 }
 CAWindow class >> createVSpaceFiller [
 	| morph |
 	morph := Morph new.
-	morph color: Color transparent.
-	morph extent: 0@0.
-	morph vResizing: #spaceFill.
-	morph hResizing: #rigid.
+	morph color: Color transparent;
+		extent: 0@0;
+		vResizing: #spaceFill;
+		hResizing: #rigid.
 	^morph.
 ]
 
@@ -342,10 +351,10 @@ CAWindow >> activeTool: aTool [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 12:38'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:25'
 }
 CAWindow >> canvasContainer [
-	^ canvasContainer
+	^canvasContainer.
 ]
 
 {
@@ -357,7 +366,7 @@ CAWindow >> canvasContainer: aCanvasContainer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialization,
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:42'
 }
 CAWindow >> initialize [
@@ -374,38 +383,38 @@ CAWindow >> initialize [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:25'
 }
 CAWindow >> isSimulating [
-	^ isSimulating
+	^isSimulating.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:48'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:25'
 }
-CAWindow >> isSimulating: anObject [
-	isSimulating := anObject
+CAWindow >> isSimulating: aBoolean [
+	isSimulating := aBoolean.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:31'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> menuRow [
-	^ menuRow
+	^menuRow.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:31'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> menuRow: anObject [
-	menuRow := anObject
+	menuRow := anObject.
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #colors,
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 00:25'
 }
 CAWindow >> paneColor [
@@ -414,10 +423,10 @@ CAWindow >> paneColor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> primaryColor [
-	^ primaryColor
+	^primaryColor.
 ]
 
 {
@@ -447,10 +456,10 @@ CAWindow >> scriptField: aTextField [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:52'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> secondaryColor [
-	^ secondaryColor
+	^secondaryColor.
 ]
 
 {
@@ -472,10 +481,10 @@ CAWindow >> setActiveTool: aTool [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 13:47'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> simulationStep [
-	^ simulationStep
+	^simulationStep.
 ]
 
 {
@@ -489,10 +498,10 @@ CAWindow >> simulationStep: aNumber [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:12'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> toolContainer [
-	^ toolContainer.
+	^toolContainer.
 ]
 
 {
@@ -537,10 +546,10 @@ CAWindow >> toolStroke: aBoolean [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 00:44'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:24'
 }
 CAWindow >> toolStrokeWidth [
-	^toolStrokeWidth
+	^toolStrokeWidth.
 ]
 
 {

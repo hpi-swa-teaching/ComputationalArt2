@@ -10,16 +10,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Tyron Franzke 6/12/2024 18:53'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:21'
 }
 CAImportImageFeature class >> executeFeature: aCAWindow [
 	| fc stream |
-	
 	fc := FileChooser new.
 	"fc initializeAsSystemWindowWithCaptionPane."
-	fc initializeAsSystemWindowWithCaptionPane.
-	fc setCaption: 'Select an image file. (.png .gif .bmp .jpg .jpeg)' translated.
-	fc setSuffixes: {'png' . 'gif' . 'bmp' . 'jpg' . 'jpeg' }.
+	fc initializeAsSystemWindowWithCaptionPane;
+		setCaption: 'Select an image file. (.png .gif .bmp .jpg .jpeg)' translated;
+		setSuffixes: {'png' . 'gif' . 'bmp' . 'jpg' . 'jpeg' }.
 	stream := fc open.
 	stream ifNotNil: [ | form |
 		form := (Form fromBinaryStream: stream).
