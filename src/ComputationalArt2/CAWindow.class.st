@@ -118,13 +118,12 @@ CAWindow class >> createHSpaceFiller [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:32'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:23'
 }
 CAWindow class >> createMenu: aCAWindow [
 	| hBox simStepMorph |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
-	"assetLoader := GitAssetLoader for: 'ComputationalArt2'."
 	{CATabCanvasFeature. CATabInitalizeFeature.} do: [:Feature | | button |
 		button := Feature createFeatureButton: aCAWindow.
 		hBox addMorph: button.
@@ -150,13 +149,12 @@ CAWindow class >> createMenu: aCAWindow [
 
 {
 	#category : #ui,
-	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:32'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:23'
 }
 CAWindow class >> createSimulationsButtons: aCAWindow [
 	| hBox |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
-	"assetLoader := GitAssetLoader for: 'ComputationalArt2'."
 	{CAResetFeature. CAPauseFeature. CAStartFeature. CAStepFeature} do: [:Feature | | button |
 		button := Feature createFeatureButton: aCAWindow.
 		hBox addMorph: button.

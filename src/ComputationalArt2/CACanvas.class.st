@@ -52,10 +52,10 @@ CACanvas >> clearImage: aForm [
 
 {
 	#category : #api,
-	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 17:01'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
 }
 CACanvas >> colorAt: aPosition [
-	^ CARGB newFrom: (self form colorAt: aPosition).
+	^CARGB newFrom: (self form colorAt: aPosition).
 ]
 
 {
@@ -82,11 +82,19 @@ CACanvas >> create [
 ]
 
 {
+	#category : #api,
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
+}
+CACanvas >> defaultColor [
+	^defaultColor.
+]
+
+{
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:10'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
 }
 CACanvas >> depth [
-	^ depth.
+	^depth.
 ]
 
 {
@@ -211,18 +219,18 @@ CACanvas >> fillFrom: startPoint withColor: aCARGB [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 6/5/2024 13:32'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
 }
 CACanvas >> form [
-	^ stagedCanvas form.
+	^stagedCanvas form.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:11'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
 }
 CACanvas >> height [
-	^ height.
+	^height.
 ]
 
 {
@@ -235,10 +243,10 @@ CACanvas >> height: aHeight [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:07'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:14'
 }
 CACanvas >> initialize [
-	defaultColor := Color gray.
+	defaultColor := CARGB gray.
 	undoStack := OrderedCollection new.
 	redoStack := OrderedCollection new.
 ]
@@ -270,6 +278,14 @@ CACanvas >> redo [
 		stagedCanvas setForm: redoStack removeLast.
 		self commit.
 		].
+]
+
+{
+	#category : #api,
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:01'
+}
+CACanvas >> redoStack [
+	^ redoStack
 ]
 
 {
@@ -325,6 +341,14 @@ CACanvas >> saveState [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:58'
+}
+CACanvas >> stableCanvas [
+	^stableCanvas.
+]
+
+{
 	#category : #'state management',
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:08'
 }
@@ -337,11 +361,19 @@ CACanvas >> undo [
 ]
 
 {
+	#category : #api,
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
+}
+CACanvas >> undoStack [
+	^undoStack.
+]
+
+{
 	#category : #accessing,
-	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:13'
+	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:12'
 }
 CACanvas >> width [
-	^ width.
+	^width.
 ]
 
 {
