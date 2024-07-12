@@ -13,6 +13,8 @@ Class {
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:21'
 }
 CAImportImageFeature class >> executeFeature: aCAWindow [
+	"I open a file chooser dialog, let the user select an image file,
+    and then display the selected image on the canvas."
 	| fc stream |
 	fc := FileChooser new.
 	"fc initializeAsSystemWindowWithCaptionPane."

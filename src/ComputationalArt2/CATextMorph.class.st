@@ -1,3 +1,4 @@
+"CATextMorph is a specialized TextMorph for the application."
 Class {
 	#name : #CATextMorph,
 	#superclass : #TextMorph,
@@ -12,9 +13,10 @@ Class {
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 01:54'
 }
 CATextMorph >> drawKeyboardFocusIndicationOn: aCanvas [
-
+	"I draw the keyboard focus indication on the given canvas, considering rounded corners."
 	self wantsRoundedCorners
-		ifTrue: [aCanvas frameRoundRect: self bounds radius: self cornerRadius width: self keyboardFocusWidth + self borderWidth color: self keyboardFocusColor]
+		ifTrue: [aCanvas frameRoundRect: self bounds radius: self cornerRadius width:
+			self keyboardFocusWidth + self borderWidth color: self keyboardFocusColor]
 		ifFalse: [aCanvas fillRectangle: self bounds color: CAWindow uiDarkerBackground].
 ]
 
@@ -23,6 +25,7 @@ CATextMorph >> drawKeyboardFocusIndicationOn: aCanvas [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 00:41'
 }
 CATextMorph >> drawOn: aCanvas [
+	"I draw myself on the given canvas, updating the font based on the UI scale factor if needed."
 	cachedUiScale = Display uiScaleFactor ifFalse:[
 		cachedUiScale := Display uiScaleFactor.
 		self font: TextStyle defaultFont.].

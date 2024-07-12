@@ -43,6 +43,7 @@ CAMoveTool >> handleMouseMove: anEvent on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:17'
 }
 CAMoveTool >> handleMouseWheel: anEvent on: aCACanvasContainer [
+	"I handle the mouse wheel event and zoom the canvas content."
 	| deltaY currentScale newScale mousePosition currentMouseCanvasOffset newMouseCanvasOffset currentCanvasOffset newCanvasOffset |
 	
 	currentScale := aCACanvasContainer canvasScale asFloat.

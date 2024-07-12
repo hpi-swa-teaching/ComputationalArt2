@@ -35,8 +35,8 @@ CAPenTool class >> toolName [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:50'
 }
 CAPenTool >> drawAt: aPoint on: aCACanvasContainer [
-	aCACanvasContainer canvas drawPoint: aPoint color: aCACanvasContainer caWindow primaryColor.
-
+	"I draw a point at the given point with the primary color on the canvas."
+	aCACanvasContainer canvas drawPoint: aPoint color:aCACanvasContainer caWindow primaryColor.
 ]
 
 {

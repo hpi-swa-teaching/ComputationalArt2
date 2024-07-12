@@ -1,3 +1,6 @@
+"
+CAHSpace is a Morph subclass that represents a horizontal space with a specific width in DPI.
+"
 Class {
 	#name : #CAHSpace,
 	#superclass : #Morph,
@@ -21,6 +24,7 @@ CAHSpace >> dpiWidth: aNumber [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 15:39'
 }
 CAHSpace >> drawOn: aCanvas [
+	"I calculate and set my width based on dpiWidth and ensure it's reflected in my extent before drawing."
 	| w |
 	w := (dpiWidth * Display uiScaleFactor) rounded.
 	w = self extent x ifFalse: [

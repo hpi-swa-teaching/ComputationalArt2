@@ -1,3 +1,6 @@
+"
+CACanvas provides a simplified API to draw on a CACanvas.
+"
 Class {
 	#name : #CACanvasAPI,
 	#superclass : #Object,
@@ -67,6 +70,7 @@ CACanvasAPI >> fillRect: start to: end [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:58'
 }
 CACanvasAPI >> fold: a2DArray [
+	" I apply a folding operation to the canvas using the given 2D array as a kernel."
 	0 to: (self height - 1) do: [ :y |
 		0 to: (self width - 1) do: [ :x |
 			self fold: a2DArray at: x@y.].].
@@ -77,6 +81,7 @@ CACanvasAPI >> fold: a2DArray [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:41'
 }
 CACanvasAPI >> fold: a2DArray at: aPoint [
+	" I apply the folding operation defined by the given 2D array (kernel) at the given point."
 	| hm wm b g r |
 	hm := (a2DArray size / 2) floor.
 	wm := (((a2DArray at: 1) size / 2) floor).
@@ -116,6 +121,7 @@ CACanvasAPI >> initialize [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:55'
 }
 CACanvasAPI >> pixelsDo: aBlock [
+	" I iterate over each pixel of the canvas and evaluate the given block with the x and y coordinates."
 	0 to: (self width - 1) do: [:y|
 		0 to: (self height - 1) do: [:x|
 			aBlock value: x value: y.].].
@@ -126,6 +132,7 @@ CACanvasAPI >> pixelsDo: aBlock [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:48'
 }
 CACanvasAPI >> privateCanvas: aCACanvas [
+	" I set the canvas to the given CACanvas object and create a deep copy for the backbuffer."
 	canvas := aCACanvas.
 	backbuffer := aCACanvas form deepCopy.
 ]
@@ -151,6 +158,7 @@ CACanvasAPI >> rgbAt: aPoint put: aCARGB [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 10:43'
 }
 CACanvasAPI >> rgbBackAt: aPoint [
+	" I return the color of the backbuffer at the given point, handling boundary conditions."
 	| p |
 	p := (aPoint x min: (self width - 1) max: 0)@(aPoint y min: (self height - 1) max: 0).
 	^CARGB newFrom: (backbuffer colorAt: p).

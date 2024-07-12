@@ -1,3 +1,6 @@
+"
+CAImportFeature allows users to import images and settings into the canvas.
+"
 Class {
 	#name : #CAImportFeature,
 	#superclass : #CAClickableFeature,
@@ -9,7 +12,7 @@ Class {
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
-	"Applies dictionary values to the specified window"
+	"I apply dictionary values to the specified window."
 	| d container |
 	d := Compiler evaluate: aDictString.
 	container := aWindow canvasContainer.
@@ -25,7 +28,7 @@ CAImportFeature class >> applyDictionaryToWindow: aWindow from: aDictString [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> deserializeFormFromString: aFormString [
-	"Deserializes the Form from the string"
+	"I deserialize the Form from a string."
 	^Compiler evaluate: aFormString.
 ]
 
@@ -34,6 +37,7 @@ CAImportFeature class >> deserializeFormFromString: aFormString [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> executeFeature: aCAWindow [
+	"I execute the import feature on the given window."
 	| stream dictString formString loadedForm fileContents separatorIndex |
 	stream := self openImageFileChooser.
 	stream ifNotNil: [
@@ -54,7 +58,7 @@ CAImportFeature class >> executeFeature: aCAWindow [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> extractDictionaryStringFrom: fileContents separatorIndex: separatorIndex [
-	"Extracts the form string from the stream"
+	"I extract the form string from the stream."
 	^fileContents copyFrom: 1 to: separatorIndex - 1.
 ]
 
@@ -80,7 +84,7 @@ CAImportFeature class >> featureName [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:20'
 }
 CAImportFeature class >> openImageFileChooser [
-	"Opens a file chooser for selecting an image file"
+	"I open a file chooser for selecting an image file."
 	| fc |
 	fc := FileChooser new.
 	fc initializeAsSystemWindowWithCaptionPane;
@@ -93,7 +97,7 @@ CAImportFeature class >> openImageFileChooser [
 	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 01:49'
 }
 CAImportFeature class >> updateCanvasWithLoadedForm: aForm in: aWindow [
-    "Updates the canvas with the loaded Form"
+    "I update the canvas with the loaded Form."
     aWindow canvasContainer canvas
         resize: aForm width height: aForm height;
         clearImage: aForm;

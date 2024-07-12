@@ -1,3 +1,6 @@
+"
+CAIconButton is a UI element that represents a clickable button with an form icon.
+"
 Class {
 	#name : #CAIconButton,
 	#superclass : #Morph,
@@ -60,6 +63,7 @@ CAIconButton class >> newFeatureButton: aFeatureClass onClick: aBlock [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 21:22'
 }
 CAIconButton class >> newFrom: aForm onClick: aBlock ballonText: aString [
+	"I create a new button with the given form, click action, and balloon text."
 	| button |
 	button := CAIconButton new.
 	button color: self defaultColor.
@@ -165,6 +169,7 @@ CAIconButton >> handlesMouseOver: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 12:14'
 }
 CAIconButton >> iconHeightPixel [
+	"I calculate and return the height of the icon in pixels."
 	| size |
 	size := baseForm extent.
 	^(iconWidth / ((size x asFloat) / (size y asFloat)) * Display uiScaleFactor) ceiling.
@@ -183,6 +188,7 @@ CAIconButton >> iconWidth: aNumber [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:27'
 }
 CAIconButton >> iconWidthPixel [
+	"I calculate and return the width of the icon in pixels."
 	^(iconWidth * Display uiScaleFactor) ceiling.
 ]
 
@@ -253,6 +259,7 @@ CAIconButton >> onClick: aBlock [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 11:13'
 }
 CAIconButton >> padding: pad [
+	"I set the padding of the button for all sides at the same time."
 	self paddingTop: pad right: pad bottom: pad left: pad.
 ]
 
@@ -261,6 +268,7 @@ CAIconButton >> padding: pad [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 11:48'
 }
 CAIconButton >> paddingBottomPixels [
+	"I calculate and return the bottom padding in pixels."
 	^(paddingBottom * Display uiScaleFactor) ceiling.
 ]
 
@@ -269,6 +277,7 @@ CAIconButton >> paddingBottomPixels [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 11:48'
 }
 CAIconButton >> paddingLeftPixels [
+	"I calculate and return the left padding in pixels."
 	^(paddingLeft * Display uiScaleFactor) ceiling.
 ]
 
@@ -277,6 +286,7 @@ CAIconButton >> paddingLeftPixels [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 11:49'
 }
 CAIconButton >> paddingRightPixels [
+	"I calculate and return the right padding in pixels."
 	^(paddingRight * Display uiScaleFactor) ceiling.
 ]
 
@@ -296,6 +306,7 @@ CAIconButton >> paddingTop: top right: right bottom: bottom left: left [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 11:49'
 }
 CAIconButton >> paddingTopPixels [
+	"I calculate and return the top padding in pixels"
 	^(paddingTop * Display uiScaleFactor) ceiling.
 ]
 
@@ -304,6 +315,7 @@ CAIconButton >> paddingTopPixels [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 14:23'
 }
 CAIconButton >> updateColor [
+	"I update the color of the button based on its state."
 	| class |
 	class := self class.
 	pressed ifTrue: [
@@ -323,6 +335,7 @@ CAIconButton >> updateColor [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 13:19'
 }
 CAIconButton >> updateDisplayIcon [
+	"I update the displayed icon based on the base form and icon width."
 	displayIcon image: (baseForm magnifyBy:
 		((self iconWidthPixel asFloat) / (baseForm extent x asFloat))).
 ]
@@ -332,8 +345,7 @@ CAIconButton >> updateDisplayIcon [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/4/2024 13:35'
 }
 CAIconButton >> updateSize [
+	"Update the size and position of the button and its icon."
 	self extent: (self paddingRightPixels + self iconWidthPixel + self paddingLeftPixels)@(self paddingTopPixels + self iconHeightPixel + self paddingBottomPixels).
 	displayIcon position: self position + (self paddingLeftPixels@self paddingTopPixels).
-	
-	
 ]

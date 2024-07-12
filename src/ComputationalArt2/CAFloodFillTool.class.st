@@ -32,6 +32,7 @@ CAFloodFillTool class >> toolName [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:17'
 }
 CAFloodFillTool >> handleMouseDown: anEvent on: aCACanvasContainer [
+	"I handle the mouse down event and fill the area with the selected color."
 	| startPoint |
 	aCACanvasContainer canvas saveState;
 		commit.

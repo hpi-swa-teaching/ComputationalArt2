@@ -41,6 +41,7 @@ CACircleTool class >> toolName [
 	#'squeak_changestamp' : 'iss 6/26/2024 13:37'
 }
 CACircleTool >> drawCircleFrom: startPoint to: endPoint on: aCACanvasContainer [
+	"I draw a circle from the given start point to the given end point on the given canvas container."
 	| center radius caWindow |
 	center := (startPoint + endPoint) // 2.
 	radius := (startPoint dist: endPoint) // 2.

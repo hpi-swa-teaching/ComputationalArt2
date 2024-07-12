@@ -35,6 +35,7 @@ CALineTool class >> toolName [
 	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 13:19'
 }
 CALineTool >> handleMouseDown: anEvent on: aCACanvasContainer [
+	"I handle the mouse down event by saving the start point of the line."
 	startPoint := aCACanvasContainer getPixelPosition: anEvent position.
 	aCACanvasContainer canvas saveState.
 	aCACanvasContainer canvas commit.
@@ -46,6 +47,7 @@ CALineTool >> handleMouseDown: anEvent on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 01:37'
 }
 CALineTool >> handleMouseMove: anEvent on: aCACanvasContainer [
+	"I handle the mouse move event by drawing a temporary line from the start point to the current mouse position."
 	startPoint ifNotNil: [ | endPoint caWindow |
 		caWindow := aCACanvasContainer caWindow.
 		aCACanvasContainer canvas reset.
@@ -59,6 +61,7 @@ CALineTool >> handleMouseMove: anEvent on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:26'
 }
 CALineTool >> handleMouseUp: anEvent on: aCACanvasContainer [
+	"I handle the mouse up event by drawing the final line from the start point to the end point."
 	| endPoint caWindow |
 	endPoint := aCACanvasContainer getPixelPosition: anEvent position.
 	caWindow := aCACanvasContainer caWindow.

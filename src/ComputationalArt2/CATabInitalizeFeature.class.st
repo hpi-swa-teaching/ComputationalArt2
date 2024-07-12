@@ -1,3 +1,6 @@
+"
+CATabInitalizeFeature provides functionality to initialize the canvas with a script.
+"
 Class {
 	#name : #CATabInitalizeFeature,
 	#superclass : #CATabFeature,

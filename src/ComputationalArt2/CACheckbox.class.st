@@ -1,3 +1,6 @@
+"
+CACheckbox is a UI element that represents a checkbox with an icon.
+"
 Class {
 	#name : #CACheckbox,
 	#superclass : #CAIconButton,

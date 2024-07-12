@@ -1,3 +1,6 @@
+"
+CAScriptMorph manages multiple code snippets in different tabs.
+"
 Class {
 	#name : #CAScriptMorph,
 	#superclass : #PluggableTextMorphPlus,
@@ -32,6 +35,7 @@ CAScriptMorph >> content [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 01:39'
 }
 CAScriptMorph >> contentOfTab: aTabName [
+	"I return the content of the specified tab."
 	aTabName = self currentTabname ifTrue: [
 		^self text deepCopy].
 	^contentTabs at: aTabName.
@@ -50,6 +54,7 @@ CAScriptMorph >> contentTabs [
 	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 11:37'
 }
 CAScriptMorph >> contentTabs: aContentMapping defaultTab: aTabname [
+	"I set the content of all tabs and switch to the specified default tab."
 	contentTabs := aContentMapping.
 	self switchToTab: aTabname.
 	
@@ -77,6 +82,7 @@ CAScriptMorph >> initialize [
 	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:49'
 }
 CAScriptMorph >> switchToTab: aTabname [
+	"I switch to the specified tab, saving the content of the current tab."
 	contentTabs at: currentTabname put: (self text deepCopy).
 	currentTabname := aTabname.
 	self update.

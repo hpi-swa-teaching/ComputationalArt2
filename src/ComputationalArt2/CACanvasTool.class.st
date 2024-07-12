@@ -1,5 +1,5 @@
 "
-This abstract class serves as the base for all canvas tools in the Computational Art application.
+CACanvasTool is an abstract class that serves as the base for all canvas tools.
 "
 Class {
 	#name : #CACanvasTool,
@@ -21,6 +21,7 @@ CACanvasTool class >> buttonForm [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/8/2024 22:33'
 }
 CACanvasTool class >> createContextBox: aCAWindow [
+	"I am an abstract method and should be overridden by subclasses to create and return a context box for the tool."
 	^self subclassResponsibility.
 ]
 
@@ -29,6 +30,7 @@ CACanvasTool class >> createContextBox: aCAWindow [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/7/2024 00:05'
 }
 CACanvasTool class >> createToolButton: aCAToolContainer [
+	"I create and return a new tool button for the tool."
 	^CAIconButton newToolButton: self conainer: aCAToolContainer.
 ]
 
@@ -37,6 +39,7 @@ CACanvasTool class >> createToolButton: aCAToolContainer [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:15'
 }
 CACanvasTool class >> toolName [
+	"I return the name of the tool and should be overwritten."
 	^'Tool'.
 ]
 
@@ -45,7 +48,7 @@ CACanvasTool class >> toolName [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 15:56'
 }
 CACanvasTool >> handleMouseClick: anEven on: aCACanvasContainer [
-	
+	"I am a abstract method to handle mouse click events on the canvas."
 ]
 
 {
@@ -53,7 +56,7 @@ CACanvasTool >> handleMouseClick: anEven on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 12:54'
 }
 CACanvasTool >> handleMouseDown: anEven on: aCACanvasContainer [
-	
+	"I am a abstract method to handle mouse down events on the canvas."
 ]
 
 {
@@ -61,7 +64,7 @@ CACanvasTool >> handleMouseDown: anEven on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 12:55'
 }
 CACanvasTool >> handleMouseMove: anEven on: aCACanvasContainer [
-	
+	"I am a abstract method to handle mouse move events on the canvas."
 ]
 
 {
@@ -69,7 +72,7 @@ CACanvasTool >> handleMouseMove: anEven on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 12:55'
 }
 CACanvasTool >> handleMouseUp: anEven on: aCACanvasContainer [
-	
+	"I am a abstract method to handle mouse up events on the canvas."
 ]
 
 {
@@ -77,5 +80,5 @@ CACanvasTool >> handleMouseUp: anEven on: aCACanvasContainer [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 12:55'
 }
 CACanvasTool >> handleMouseWheel: anEven on: aCACanvasContainer [
-	
+	"I am a abstract method to handle mouse wheel events on the canvas."
 ]

@@ -1,3 +1,6 @@
+"
+CAIntegerTextMorph is used to handle integer input within a text morph.
+"
 Class {
 	#name : #CAIntegerTextMorph,
 	#superclass : #CATextMorph,
@@ -34,6 +37,7 @@ CAIntegerTextMorph >> initialize [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 02:06'
 }
 CAIntegerTextMorph >> keyStroke: anEvent [
+	"I handle key strokes to allow only digits, backspace, delete, and arrow keys."
 	| key string number |
 	key := anEvent keyCharacter.
 	(key isDigit or:
@@ -89,6 +93,7 @@ CAIntegerTextMorph >> minValue: aNumber [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/9/2024 00:40'
 }
 CAIntegerTextMorph >> number: aNumber [
+	"I set the contents to the given number, ensuring it is within the min and max values."
 	| num |
 	num := aNumber min: maxValue max: minValue.
 	self contents: num asString.

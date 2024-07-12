@@ -1,3 +1,4 @@
+"CATabCanvasFeature provides functionality related to the canvas script tab in the application."
 Class {
 	#name : #CATabCanvasFeature,
 	#superclass : #CATabFeature,

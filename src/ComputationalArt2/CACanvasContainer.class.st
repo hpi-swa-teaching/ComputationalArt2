@@ -1,3 +1,6 @@
+"
+CACanvasContainer is holding and representing a canvas that can be drawn on.
+"
 Class {
 	#name : #CACanvasContainer,
 	#superclass : #PasteUpMorph,
@@ -102,6 +105,7 @@ CACanvasContainer >> clampScale: aNumber [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 16:03'
 }
 CACanvasContainer >> getPixelPosition: aPoint [
+	"I calculate and return the pixel position from a given point, considering canvas offset and scale."
 	^(((aPoint - self position) - canvasOffset) / canvasScale) floor.
 ]
 
@@ -110,6 +114,7 @@ CACanvasContainer >> getPixelPosition: aPoint [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:14'
 }
 CACanvasContainer >> handlesKeyboard: anEvent [
+	"I check if the shift key is pressed."
 	^anEvent keyCode = 16.
 ]
 
@@ -164,6 +169,7 @@ CACanvasContainer >> initialize [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:42'
 }
 CACanvasContainer >> keyDown: anEvent [
+	"I set the active tool to the move tool temporarily when the shift key is pressed."
 	caWindow toolContainer setActiveClassTemporary: CAMoveTool.
 ]
 
@@ -172,6 +178,7 @@ CACanvasContainer >> keyDown: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:40'
 }
 CACanvasContainer >> keyUp: anEvent [
+	"I revert to the previous active tool when the shift key is released."
 	caWindow toolContainer revertToPreviousActiveClass.
 ]
 
@@ -180,6 +187,7 @@ CACanvasContainer >> keyUp: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:02'
 }
 CACanvasContainer >> mouseDown: anEvent [
+	"I delegate the mouse down event to the active tool."
     caWindow activeTool handleMouseDown: anEvent on: self.
 ]
 
@@ -188,6 +196,7 @@ CACanvasContainer >> mouseDown: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 13:35'
 }
 CACanvasContainer >> mouseMove: anEvent [
+	"I delegate the mouse move event to the active tool."
 	caWindow activeTool handleMouseMove: anEvent on: self.
 ]
 
@@ -196,6 +205,7 @@ CACanvasContainer >> mouseMove: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/27/2024 17:04'
 }
 CACanvasContainer >> mouseUp: anEvent [
+	"I delegate the mouse up event to the active tool."
 	caWindow activeTool handleMouseUp: anEvent on: self.
 ]
 
@@ -204,6 +214,7 @@ CACanvasContainer >> mouseUp: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/2/2024 14:44'
 }
 CACanvasContainer >> mouseWheel: anEvent [
+	"I delegate the mouse wheel event to the active tool."
 	caWindow activeTool handleMouseWheel: anEvent on: self.
 ]
 
@@ -212,6 +223,7 @@ CACanvasContainer >> mouseWheel: anEvent [
 	#'squeak_changestamp' : 'Yoan Tchorenev 7/10/2024 14:22'
 }
 CACanvasContainer >> step [
+	"I perform a simulation step if the simulation is running."
 	caWindow isSimulating ifTrue: [
 		CAStepFeature executeFeature: caWindow.].
 	super step.

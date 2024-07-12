@@ -1,3 +1,6 @@
+"
+CAVSpace is a Morph subclass that represents a vertical space with a specific height in DPI.
+"
 Class {
 	#name : #CAVSpace,
 	#superclass : #Morph,
@@ -21,6 +24,8 @@ CAVSpace >> dpiHeight: aNumber [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 16:58'
 }
 CAVSpace >> drawOn: aCanvas [
+	"I draw draw myselfe on the canvas and calculate the height in pixels
+	based on DPI and scale factor."
 	| h |
 	h := (dpiHeight * Display uiScaleFactor) rounded.
 	h = self extent y ifFalse: [

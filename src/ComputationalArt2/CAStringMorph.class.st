@@ -1,3 +1,6 @@
+"
+CAStringMorph represents a string.
+"
 Class {
 	#name : #CAStringMorph,
 	#superclass : #StringMorph,

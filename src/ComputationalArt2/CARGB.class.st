@@ -1,3 +1,6 @@
+"
+CARGB is a custom implemenation of a color model in RGB
+"
 Class {
 	#name : #CARGB,
 	#superclass : #Color,
@@ -30,6 +33,7 @@ CARGB class >> blue [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:25'
 }
 CARGB class >> chanelTo8Bit: aNumber [
+	"I convert a number to an 8-bit channel value (0-255)."
 	^(((aNumber * 256.0) floor) min: 255).
 ]
 
@@ -177,6 +181,7 @@ CARGB >> initialize [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 18:27'
 }
 CARGB >> morphicColor [
+	"I convert myself to a Color object."
 	^Color r: red /255.0 g: green / 255.0 b: blue / 255.0.
 ]
 
@@ -185,6 +190,7 @@ CARGB >> morphicColor [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 16:46'
 }
 CARGB >> pixelValueForDepth: d [
+	"I return my pixel value for the given depth. I currently only support depth 32."
 	| val |
 	d = 32 ifTrue: [
 		 val :=	((red bitShift: 16) bitAnd: 16rFF0000) bitOr:

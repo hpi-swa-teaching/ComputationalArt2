@@ -1,3 +1,6 @@
+"
+CAToolContainer is a UI element that holds and manages drawing tools for the canvas.
+"
 Class {
 	#name : #CAToolContainer,
 	#superclass : #Morph,
@@ -18,7 +21,7 @@ Class {
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/29/2024 19:36'
 }
 CAToolContainer class >> create: aCAWindow [
-	
+	"I create and initialize a new tool container with the given window."
 	| toolContainer contextRow toolRow secondaryColorButton primaryColorButton primaryColorForm secondaryColorForm |
 	toolContainer := CAToolContainer new.
 	toolContainer caWindow: aCAWindow.
@@ -152,6 +155,7 @@ CAToolContainer >> secondaryRGB: aCARGB [
 	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:40'
 }
 CAToolContainer >> setActiveButton: aCAToolButton [
+    "I set the given tool button as active and deactivate the previous one."
 	activeButton isNil ifFalse: [activeButton active: false].
 	activeButton := aCAToolButton.
 	activeButton active: true.
@@ -162,6 +166,7 @@ CAToolContainer >> setActiveButton: aCAToolButton [
 	#'squeak_changestamp' : 'Tyron Franzke 7/11/2024 23:40'
 }
 CAToolContainer >> setActiveClass: aCACanvasToolClass [
+	"I set the active tool class and update the UI accordingly."
 	| contextBox newContextBox |
 	self setActiveButton: (toolRow submorphNamed: aCACanvasToolClass toolName).
 	caWindow activeTool: aCACanvasToolClass new.

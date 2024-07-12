@@ -1,3 +1,6 @@
+"
+CAHSVColorSelectorMorph is a Morph used to select an HSV color value.
+"
 Class {
 	#name : #CAHSVColorSelectorMorph,
 	#superclass : #HSVColorSelectorMorph,

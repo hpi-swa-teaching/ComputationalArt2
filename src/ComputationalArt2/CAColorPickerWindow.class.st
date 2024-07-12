@@ -1,3 +1,6 @@
+"
+CAColorPickerWindow provides a UI for selecting a color.
+"
 Class {
 	#name : #CAColorPickerWindow,
 	#superclass : #SystemWindow,
@@ -30,6 +33,7 @@ CAColorPickerWindow class >> create [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 21:09'
 }
 CAColorPickerWindow >> accept [
+	"I evaluate the onAcceptBlock with the selected color."
 	onAcceptBlock value: (CARGB newFrom: hsv selectedColor).
 	self delete.
 ]
@@ -39,6 +43,7 @@ CAColorPickerWindow >> accept [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 19:26'
 }
 CAColorPickerWindow >> colorSelected: aColor [
+	"I update the text fields with the values from the given color."
 	redTextMorph contents: (CARGB chanelTo8Bit: aColor red) asString.
 	greenTextMorph contents: (CARGB chanelTo8Bit: aColor green) asString.
 	blueTextMorph contents: (CARGB chanelTo8Bit: aColor blue) asString.
@@ -52,6 +57,7 @@ CAColorPickerWindow >> colorSelected: aColor [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:50'
 }
 CAColorPickerWindow >> initialize [
+	"I initialize the color picker window and its UI elements."
 	| vBox hBox hBoxRed hBoxGreen hBoxBlue hBoxHue hBoxSaturation hBoxValue cancelButton hBoxButtons acceptButton |
 	super initialize.
 	self clipSubmorphs: true;
@@ -159,6 +165,7 @@ CAColorPickerWindow >> initialize [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 20:50'
 }
 CAColorPickerWindow >> onAccept: aBlock [
+	"I set the block to be executed when the user accepts the color selection."
 	onAcceptBlock := aBlock.
 ]
 
@@ -175,6 +182,7 @@ CAColorPickerWindow >> paneColor [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/23/2024 19:43'
 }
 CAColorPickerWindow >> startColor: aCARGB [
+	"I set the initial color of the color picker."
 	| morpicColor |
 	morpicColor := aCARGB morphicColor.
 	self colorSelected: morpicColor.

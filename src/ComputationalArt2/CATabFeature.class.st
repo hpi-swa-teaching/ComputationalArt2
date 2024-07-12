@@ -1,3 +1,7 @@
+"
+CATabFeature is used to switch tabs in a CAWindow instance.
+"
+
 Class {
 	#name : #CATabFeature,
 	#superclass : #CAClickableFeature,

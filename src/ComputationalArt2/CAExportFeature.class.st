@@ -1,3 +1,6 @@
+"
+CAExportFeature provides functionality to export canvas properties and content to a .compArt file.
+"
 Class {
 	#name : #CAExportFeature,
 	#superclass : #CAClickableFeature,
@@ -9,8 +12,8 @@ Class {
 	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:07'
 }
 CAExportFeature class >> executeFeature: aCAWindow [
+	"I prompt the user for a filename and directory, validate the input, and then save the canvas properties to the specified file."
 	| fileName directory validFileName |
-	   
 	fileName := UIManager default request: 'Enter a filename (.compArt)'.
 	fileName isEmpty ifTrue: [^ self].
    
@@ -34,8 +37,8 @@ CAExportFeature class >> featureName [
 	#'squeak_changestamp' : 'Tyron Franzke 7/10/2024 12:12'
 }
 CAExportFeature class >> saveCanvasPropertiesToFile: aDirectory fileName: aFileName window: aCAWindow [
+	"I save the canvas properties and content to the specified file."
 	| out container properties canvasForm |
-  
 	out := FileStream forceNewFileNamed: (aDirectory pathName, '/', aFileName).
 	container := aCAWindow canvasContainer.
 	properties := {
@@ -60,7 +63,7 @@ CAExportFeature class >> saveCanvasPropertiesToFile: aDirectory fileName: aFileN
 	#'squeak_changestamp' : 'Tyron Franzke 6/27/2024 02:06'
 }
 CAExportFeature class >> validateFileName: aFileName [
-	"Ensure the filename ends with '.compArt'"
+	"I ensure the filename ends with '.compArt'"
 	^ (aFileName endsWith: '.compArt')
 		ifTrue: [aFileName]
 		ifFalse: [aFileName, '.compArt'].

@@ -1,3 +1,6 @@
+"
+CAWindow is the main window of the application.
+"
 Class {
 	#name : #CAWindow,
 	#superclass : #SystemWindow,
@@ -31,7 +34,8 @@ CAWindow class >> create [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:37'
 }
 CAWindow class >> create: aBoolean [
-
+	"I create and return a new CAWindow instance.
+	If aBoolean is true, I open the window in the world."
 	| window menuHeight menuRow canvasToolVBox simButtons simVBox scriptField canvasContainer toolContainer |
 	window := CAWindow labelled: 'Computational Art'.
 	window activeTool: CAMoveTool new.
@@ -87,6 +91,7 @@ CAWindow class >> create: aBoolean [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/6/2024 22:29'
 }
 CAWindow class >> createHBox [
+	"I create and return a new horizontally aligned box."
 	| hbox |
 	hbox := Morph new.
 	hbox extent: 0@0;
@@ -107,6 +112,7 @@ CAWindow class >> createHBox [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 14:18'
 }
 CAWindow class >> createHSpaceFiller [
+	"I create and return a new horizontal space filler."
 	| morph |
 	morph := Morph new.
 	morph color: Color transparent.
@@ -121,6 +127,7 @@ CAWindow class >> createHSpaceFiller [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:23'
 }
 CAWindow class >> createMenu: aCAWindow [
+	"I create and return the menu bar of the main window."
 	| hBox simStepMorph |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
@@ -152,6 +159,7 @@ CAWindow class >> createMenu: aCAWindow [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 02:23'
 }
 CAWindow class >> createSimulationsButtons: aCAWindow [
+	"I create and return the simulation buttons."
 	| hBox |
 	hBox := CAWindow createHBox.
 	hBox color: CAWindow uiDarkerBackground.
@@ -168,7 +176,8 @@ CAWindow class >> createSimulationsButtons: aCAWindow [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/7/2024 01:27'
 }
 CAWindow class >> createToolFillContextMorph: aCAWindow [
-	 | hBox checkBox text |
+	"I create and return the UI element for the tool fill checkbox."
+	| hBox checkBox text |
 	checkBox := CACheckbox new.
 	checkBox active: aCAWindow toolFill.
 	checkBox onClick: [aCAWindow toolFill: checkBox isChecked.].
@@ -189,7 +198,8 @@ CAWindow class >> createToolFillContextMorph: aCAWindow [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/8/2024 23:02'
 }
 CAWindow class >> createToolStrokeContextMorph: aCAWindow [
-	 | hBox checkBox text |
+	"I create and return the UI element for the tool stroke checkbox."
+	| hBox checkBox text |
 	checkBox := CACheckbox new.
 	checkBox active: aCAWindow toolStroke.
 	checkBox onClick: [aCAWindow toolStroke: checkBox isChecked.].
@@ -210,7 +220,8 @@ CAWindow class >> createToolStrokeContextMorph: aCAWindow [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/18/2024 21:18'
 }
 CAWindow class >> createToolStrokeWidthContextMorph: aCAWindow [
-	 | hBox text |	
+	"I create and return the UI element for the tool stroke width input field."
+	| hBox text |	
 	text := CAStringMorph new.
 	text contents: 'Stroke Width:'.
 	
@@ -230,6 +241,7 @@ CAWindow class >> createToolStrokeWidthContextMorph: aCAWindow [
 	#'squeak_changestamp' : 'Yoan Tchorenev 6/5/2024 14:52'
 }
 CAWindow class >> createVBox [
+	"I create and return a new vertically aligned box."
 	| vbox |
 	vbox := Morph new.
 	vbox extent: 0@0;
@@ -250,6 +262,7 @@ CAWindow class >> createVBox [
 	#'squeak_changestamp' : 'Tyron Franzke 7/12/2024 00:23'
 }
 CAWindow class >> createVSpaceFiller [
+	"I create and return a new vertical space filler."
 	| morph |
 	morph := Morph new.
 	morph color: Color transparent;
